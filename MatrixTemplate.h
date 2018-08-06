@@ -52,7 +52,24 @@ public:
         T element = _buffer[rowPos + colPos * _columns];
         return element;
     }
-
+    MatrixTemplate<T> selectRow(int rowNum){
+        if(rowNum>=1){
+            MatrixTemplate<T> rowMatrix(1, _columns);
+            for(int i = 0; i<_columns; i++)
+                rowMatrix._buffer[i] = _buffer[i+_columns*(rowNum-1)];
+            return rowMatrix;
+        }
+        std::cout << "ERROR ROW MATRIX" << std::endl;
+    }
+    MatrixTemplate<T> selectColumn(int colNum){
+        if(colNum >= 1){
+            MatrixTemplate<T> columnMatrix(_rows, 1);
+            for(int j = 0; j<_rows; j++)
+                columnMatrix._buffer[j] = _buffer[j+_rows*(colNum-1)];
+            return columnMatrix;
+        }
+        std::cout << "ERROR COLUMNS MATRIX" << std::endl;
+    }
 
 
     /*Operator overloading*/
