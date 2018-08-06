@@ -6,5 +6,4 @@
 #define MATRIXABSFACTORY_HEADERS_H
 #include <iostream>
 #include <string>
-#include <list>
 #endif //MATRIXABSFACTORY_HEADERS_H

@@ -135,7 +135,7 @@ public:
     }
 
     /*Getters and setters*/
-    int getRows() const { return _rows; }
+    int getRows() const { _rows; }
     int getColumns() const { return _columns; }
 
 private:

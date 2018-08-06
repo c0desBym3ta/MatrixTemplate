@@ -12,7 +12,7 @@ int main() {
     testMatrixTemplate.printMatrix(testMatrixTemplate);
     std::cout << std::endl;
 
-    MatrixTemplate<int> nonQuadMarix(2,3);
+    MatrixTemplate<int> nonQuadMarix(1,3);
     std::cout << "\tNON QUAD MATRIX" << std::endl;
     nonQuadMarix.printMatrix();
     std::cout << std::endl;
