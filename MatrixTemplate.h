@@ -63,7 +63,7 @@ public:
         }return *this;
     }
     bool operator==(const MatrixTemplate<T>& mt) const{
-        if(_rows == mt._columns){
+        if(_rows == mt._columns && _columns == mt._rows){
             for(int i = 0; i < _rows; i++){
                 for(int j = 0; j < _columns; j++)
                     if(mt.elementPosition(i,j) != _buffer[j + i * _columns])
@@ -71,10 +71,10 @@ public:
             return false;
             }
         }
-        return true;
+        return false;
     }
     MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt){
-        if(_rows == mt._columns){
+        if(_rows == mt._columns && _columns == mt._rows){
             MatrixTemplate<T> sumMatrix(_rows, _columns);
             for(int i = 0; i<_rows*_columns; i++){
                 sumMatrix._buffer[i] = _buffer[i] + mt._buffer[i];
@@ -83,7 +83,52 @@ public:
         }
         std::cout << "ERROR SUM MATRIX" << std::endl;
     }
-
+    MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt){
+        if(_rows == mt._columns && _columns == mt._rows){
+            MatrixTemplate<T> prodMatrix(_rows, _columns);
+            for(int i =0; i<_rows*_columns; i++){
+                prodMatrix._buffer[i] = _buffer[i] * mt._buffer[i];
+            }
+            return prodMatrix;
+        }
+        std::cout << "ERROR PROD MATRIX" << std::endl;
+    }
+    MatrixTemplate<T> operator*(const T& num){
+        MatrixTemplate<T> prodNum(_rows,_columns);
+        for(int i = 0; i<_rows*_columns; i++)
+            prodNum._buffer[i] = num * _buffer[i];
+        return prodNum;
+    }
+    MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt){
+        if(_rows == mt._columns && _columns == mt._rows){
+            MatrixTemplate<T> subMatrix(_rows, _columns);
+            for(int i =0; i<_rows*_columns; i++){
+                subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];
+            }
+            return subMatrix;
+        }
+        std::cout << "ERROR SUB MATRIX" << std::endl;
+    }
+    MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt){
+        if(_rows == mt._columns && _columns == mt._rows){
+            MatrixTemplate<T> divMatrix(_rows, _columns);
+            for(int i =0; i<_rows*_columns; i++){
+                divMatrix._buffer[i] = _buffer[i] / mt._buffer[i];
+            }
+            return divMatrix;
+        }
+        std::cout << "ERROR DIV MATRIX" << std::endl;
+    }
+    MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt){
+        if(_rows == mt._columns && _columns == mt._rows){
+           for(int i =0; i<_rows*_columns; i++){
+               _buffer[i] = _buffer[i] + mt._buffer[i];
+           }
+            return *this;
+        }else{
+            std::cout << "ERROR += " << std::endl;
+        }
+    }
     /*Destructor*/
     ~MatrixTemplate(){
         delete[] _buffer;
