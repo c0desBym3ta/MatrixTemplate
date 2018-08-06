@@ -37,14 +37,14 @@ public:
     void printMatrix(MatrixTemplate& matrixTemplate) {
         for(int i = 0; i<_rows; i++) {
             for (int j = 0; j < _columns; j++)
-                std::cout << "  [" << _buffer[j + i * _columns] << "]";
+                std::cout << "\t[" << _buffer[j + i * _columns] << "]";
             std::cout << std::endl;
         }
     }
     void printMatrix(){
         for(int i = 0; i<_rows; i++) {
             for (int j = 0; j < _columns; j++)
-                std::cout << "  [" << _buffer[j + i * _columns] << "]";
+                std::cout << "\t[" << _buffer[j + i * _columns] << "]";
             std::cout << std::endl;
         }
     }
@@ -56,7 +56,7 @@ public:
 
 
     /*Operator overloading*/
-    MatrixTemplate& operator=(const MatrixTemplate<T>& mt) {
+    MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt) {
         if(this != &mt){
             delete[] _buffer;
             copier(mt);
@@ -73,11 +73,11 @@ public:
         }
         return true;
     }
-    MatrixTemplate operator+(const MatrixTemplate<T>& mt){
+    MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt){
         if(_rows == mt._columns){
             MatrixTemplate<T> sumMatrix(_rows, _columns);
             for(int i = 0; i<_rows*_columns; i++){
-                mt._buffer[i] = _buffer[i] + mt._buffer[i];
+                sumMatrix._buffer[i] = _buffer[i] + mt._buffer[i];
             }
             return sumMatrix;
         }
