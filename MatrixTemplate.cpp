@@ -53,7 +53,7 @@ void MatrixTemplate<T>::printMatrix() {
 
 template <class T>
 T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const {
-    T element = _buffer[rowPos + colPos * _columns];
+    T element = _buffer[(colPos-1) + (rowPos-1) * _columns];
     return element;
 }
 
@@ -77,6 +77,12 @@ MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) {
         return columnMatrix;
     }
     std::cout << "ERROR COLUMNS MATRIX" << std::endl;
+}
+
+template <class T>
+void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) {
+    if(_columns > 0 || _rows > 0)
+        _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
 
 /*Operator overloading.*/

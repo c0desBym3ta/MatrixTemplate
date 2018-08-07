@@ -17,26 +17,27 @@ public:
 
     /*Matrix Operations*/
     MatrixTemplate getTranspose() const;/*tested*/
-    MatrixTemplate<T> selectRow(int rowNum);
-    MatrixTemplate<T> selectColumn(int colNum);
-    T elementPosition(int rowPos, int colPos) const;
-    void printMatrix(MatrixTemplate& matrixTemplate);
-    void printMatrix();
+    MatrixTemplate<T> selectRow(int rowNum);/*tested*/
+    MatrixTemplate<T> selectColumn(int colNum);/*tested*/
+    T elementPosition(int rowPos, int colPos) const; /*tested*/
+    void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
+    void printMatrix(MatrixTemplate& matrixTemplate); /*tested*/
+    void printMatrix(); /*tested*/
 
     /*Operator overloading*/
     MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);
-    MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);
-    MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);
-    MatrixTemplate<T> operator*(const T& num);
-    MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);
-    MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);
-    MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);
-    bool operator==(const MatrixTemplate<T>& mt) const;
-    bool operator!=(const MatrixTemplate<T>& mt) const;
+    MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
+    MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
+    MatrixTemplate<T> operator*(const T& num);/*tested*/
+    MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
+    MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
+    MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
+    bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
+    bool operator!=(const MatrixTemplate<T> &mt) const;/*tested*/
 
     /*Getters and setters*/
-    int getRows() const ;
-    int getColumns() const ;
+    int getRows() const ; /*tested*/
+    int getColumns() const ; /*tested*/
 
 private:
     int _rows, _columns;
