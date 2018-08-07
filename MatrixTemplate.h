@@ -36,7 +36,7 @@ public:
     MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
     MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
     bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
-    bool operator!=(const MatrixTemplate<T> &mt) const;/*tested*/
+    bool operator!=(const MatrixTemplate<T>& mt) const;/*tested*/
 
     /*Getters and setters*/
     int getRows() const ; /*tested*/

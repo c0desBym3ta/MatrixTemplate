@@ -15,7 +15,7 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) : _rows(r), _columns(c) {
     _buffer = new T[_rows * _columns];
     srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
-        _buffer[i] = (rand()%100)+1;
+        _buffer[i] = (rand()%10)+1;
 }
 
 template <class T>
@@ -122,19 +122,16 @@ MatrixTemplate<T>& MatrixTemplate<T>::operator=(const MatrixTemplate<T>& mt) {
 
 template <class T>
 bool MatrixTemplate<T>::operator==(const MatrixTemplate<T>& mt) const{
-    if(_rows == mt._columns && _columns == mt._rows){
-        for(int i = 0; i < _rows; i++){
-            for(int j = 0; j < _columns; j++)
-                if(mt.elementPosition(i,j) != _buffer[j + i * _columns])
-                    return true;
-            return false;
-        }
+    if(_rows == mt._rows || _columns == mt._columns) {
+        for (int i = 0; i < _rows * _columns; i++)
+            if (_buffer[i] != mt._buffer[i])
+                return false;
     }
-    return false;
+    return true;
 }
 
 template <class T>
-bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T> &mt) const {
+bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T>& mt) const {
     return !(*this == mt);
 }
 
@@ -152,7 +149,7 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt){
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T>& mt){
-    if(_rows == mt._columns && _columns == mt._rows){
+    if(_rows == mt._columns ){
         MatrixTemplate<T> prodMatrix(_rows, _columns);
         for(int i =0; i<_rows*_columns; i++){
             prodMatrix._buffer[i] = _buffer[i] * mt._buffer[i];
