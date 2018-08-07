@@ -19,13 +19,16 @@ public:
     MatrixTemplate getTranspose() const;/*tested*/
     MatrixTemplate<T> selectRow(int rowNum);/*tested*/
     MatrixTemplate<T> selectColumn(int colNum);/*tested*/
+    MatrixTemplate<T> swapRows(int i, int j);
     T elementPosition(int rowPos, int colPos) const; /*tested*/
     void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
+    void manualInsertValues(MatrixTemplate& newMatrixTemplate);
     void printMatrix(MatrixTemplate& matrixTemplate); /*tested*/
+    void printMatrix(std::string matrixName); /*tested*/
     void printMatrix(); /*tested*/
 
     /*Operator overloading*/
-    MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);
+    MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
     MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
     MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
     MatrixTemplate<T> operator*(const T& num);/*tested*/

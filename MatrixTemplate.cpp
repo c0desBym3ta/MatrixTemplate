@@ -13,8 +13,9 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) : _rows(r), _columns(c) {
         _columns = 1;
 
     _buffer = new T[_rows * _columns];
+    srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
-        _buffer[i] = i+1;
+        _buffer[i] = (rand()%100)+1;
 }
 
 template <class T>
@@ -32,9 +33,18 @@ MatrixTemplate<T> MatrixTemplate<T>::getTranspose() const{
             tmp._buffer[tmp._columns * j + i] = _buffer[_columns * i + j];
     return tmp;
 }
-
 template <class T>
 void MatrixTemplate<T>::printMatrix(MatrixTemplate &matrixTemplate) {
+    for(int i = 0; i<_rows; i++) {
+        for (int j = 0; j < _columns; j++)
+            std::cout << "\t[" << _buffer[j + i * _columns] << "]";
+        std::cout << std::endl;
+    }
+}
+
+template <class T>
+void MatrixTemplate<T>::printMatrix(std::string matrixName) {
+    std::cout << "\n\t    " << matrixName << std::endl;
     for(int i = 0; i<_rows; i++) {
         for (int j = 0; j < _columns; j++)
             std::cout << "\t[" << _buffer[j + i * _columns] << "]";
@@ -83,6 +93,22 @@ template <class T>
 void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) {
     if(_columns > 0 || _rows > 0)
         _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
+}
+
+template<class T>
+MatrixTemplate<T> MatrixTemplate<T>::swapRows(int i, int j) {
+
+}
+
+template<class T>
+void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
+    T value;
+    for(int i = 0; i<_rows; i++){
+        for(int j = 0; j <_columns; j++){
+            std::cout << "Insert element at Matrix[" << i+1 << "]["<< j+1 << "]:"; std::cin >> value;
+            _buffer[j+i*_columns] = value;
+        }
+    }
 }
 
 /*Operator overloading.*/
