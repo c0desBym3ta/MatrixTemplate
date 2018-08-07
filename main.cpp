@@ -1,5 +1,6 @@
 #include "headers.h"
-#include "MatrixTemplate.h"
+//#include "MatrixTemplate.h"
+#include "MatrixTemplate.cpp"
 
 int main() {
     MatrixTemplate<int> matrixTemplate(3,3);
@@ -7,17 +8,10 @@ int main() {
     matrixTemplate.printMatrix(matrixTemplate);
     std::cout << std::endl;
 
-    MatrixTemplate<int> testMatrixTemplate = matrixTemplate;
-    std::cout << "\tTEST MATRIX TEMPLATE" << std::endl;
-    testMatrixTemplate.printMatrix(testMatrixTemplate);
-    std::cout << std::endl;
+	MatrixTemplate<int> cMatrix = matrixTemplate.getTranspose();
 
-    MatrixTemplate<int> nonQuadMarix(1,3);
-    std::cout << "\tNON QUAD MATRIX" << std::endl;
-    nonQuadMarix.printMatrix();
-    std::cout << std::endl;
-
-
+	if(matrixTemplate != cMatrix)
+		std::cout << "OK" << std::endl;
 
     return 0;
 }
