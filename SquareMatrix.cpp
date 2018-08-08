@@ -5,7 +5,7 @@
 #include "SquareMatrix.h"
 
 template <class T>
-SquareMatrix<T>::SquareMatrix(int r, int c, std::string n) : MatrixTemplate<T>(r,c,n) {
+SquareMatrix<T>::SquareMatrix(int r, int c) : MatrixTemplate<T>(r,c) {
     this->setMatrixName("SQUARE MATRIX");
     //std::cout << "\t" << this->getMatrixName() << std::endl;
 }

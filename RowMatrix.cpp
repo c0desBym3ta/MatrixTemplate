@@ -5,7 +5,7 @@
 #include "RowMatrix.h"
 
 template <class T>
-RowMatrix<T>::RowMatrix(int r, int c, std::string n) : MatrixTemplate<T>(1,c,n){
+RowMatrix<T>::RowMatrix(int r, int c) : MatrixTemplate<T>(1,c){
     this->setMatrixName("Row Matrix");
     //std::cout <<"\t" << this->getMatrixName() << std::endl;
 }

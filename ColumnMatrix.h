@@ -10,7 +10,7 @@
 template <class T>
 class ColumnMatrix : public MatrixTemplate<T>{
 public:
-    ColumnMatrix(int r, int c, std::string n);
+    ColumnMatrix(int r, int c);
     virtual ~ColumnMatrix();
 
 };

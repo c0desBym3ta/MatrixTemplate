@@ -3,4 +3,4 @@ project(MatrixAbsFactory)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(MatrixAbsFactory main.cpp MatrixTemplate.cpp MatrixTemplate.h headers.h RowMatrix.cpp RowMatrix.h MatrixFactory.h MatrixFactory.cpp MatrixFactoryType.cpp MatrixFactoryType.h ColumnMatrix.cpp ColumnMatrix.h SquareMatrix.cpp SquareMatrix.h RectangularMatrix.cpp RectangularMatrix.h)
+add_executable(MatrixAbsFactory main.cpp MatrixTemplate.cpp MatrixTemplate.h headers.h ColumnMatrix.h ColumnMatrix.cpp MatrixFactory.cpp MatrixFactory.h MatrixFactoryType.cpp MatrixFactoryType.h RectangularMatrix.h RectangularMatrix.cpp RowMatrix.cpp RowMatrix.h SquareMatrix.h SquareMatrix.cpp)

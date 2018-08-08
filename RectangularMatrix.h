@@ -10,7 +10,7 @@
 template <class T>
 class RectangularMatrix : public MatrixTemplate<T> {
 public:
-    RectangularMatrix(int r, int c, std::string n);
+    RectangularMatrix(int r, int c);
     virtual ~RectangularMatrix();
 };
 

@@ -15,7 +15,11 @@ public:
     virtual ~MatrixFactory();
 
     MatrixTemplate<T>* selectMatrixType(int r, int c);
+
+protected:
     virtual MatrixTemplate<T>* createMatrix(int r, int c) = 0;
+
+    //virtual std::unique_ptr<MatrixTemplate<T>> createMatrix(int r, int c) = 0;
 };
 
 

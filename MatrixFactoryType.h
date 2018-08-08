@@ -7,10 +7,12 @@
 
 #include "MatrixFactory.h"
 
+
 template <class T>
 class MatrixFactoryType : public MatrixFactory<T>{
 public:
     virtual MatrixTemplate<T>* createMatrix(int c, int r) override;
+    //virtual std::unique_ptr<MatrixTemplate<T>> createMatrix(int r, int c) override ;
 };
 
 

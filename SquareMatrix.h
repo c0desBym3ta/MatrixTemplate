@@ -10,7 +10,7 @@
 template <class T>
 class SquareMatrix : public MatrixTemplate<T> {
 public:
-    SquareMatrix(int r, int c, std::string n);
+    SquareMatrix(int r, int c);
     virtual ~SquareMatrix();
 };
 
