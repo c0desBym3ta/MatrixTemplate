@@ -8,4 +8,5 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <list>
 #endif //MATRIXABSFACTORY_HEADERS_H
