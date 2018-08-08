@@ -6,7 +6,7 @@
 
 template <class T>
 RectangularMatrix<T>::RectangularMatrix(int r, int c) :  MatrixTemplate<T>(r,c){
-    this->setMatrixName("RECTANGURAL MATRIX");
+    this->setMatrixName("RECTANGURAL");
    // std::cout << "\t" << this->getMatrixName() << std::endl;
 }
 

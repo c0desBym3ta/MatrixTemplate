@@ -6,7 +6,7 @@
 
 template <class T>
 SquareMatrix<T>::SquareMatrix(int r, int c) : MatrixTemplate<T>(r,c) {
-    this->setMatrixName("SQUARE MATRIX");
+    this->setMatrixName("SQUARE");
     //std::cout << "\t" << this->getMatrixName() << std::endl;
 }
 

@@ -15,19 +15,19 @@ MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c){
     if(r == 1 && c > 0) {
         matrixTemplate = new RowMatrix<T>(r, c);
         std::cout << "You have selected a row (" <<r <<  "x" << c <<  ") matrix." << std::endl;
-        matrixTemplate->setMatrixName("ROW MATRIX");
+        matrixTemplate->setMatrixName("ROW");
     }else if(r > 0 && c == 1) {
         matrixTemplate = new ColumnMatrix<T>(r, c);
         std::cout << "You have selected a column (" <<r <<  "x" << c <<  ") matrix." << std::endl;
-        matrixTemplate->setMatrixName("COLUMN MATRIXA");
+        matrixTemplate->setMatrixName("COLUMN");
     }else if(r == c) {
         matrixTemplate = new SquareMatrix<T>(r, c);
         std::cout << "You have selected a square (" <<r <<  "x" << c <<  ") matrix." << std::endl;
-        matrixTemplate->setMatrixName("SQUARE MATRIX");
+        matrixTemplate->setMatrixName("SQUARE");
     }else if(r > 0 && c > 0 && r !=c ) {
         matrixTemplate = new RectangularMatrix<T>(r, c);
         std::cout << "You have selected a rectangular (" <<r <<  "x" << c <<  ") matrix." << std::endl;
-        matrixTemplate->setMatrixName("RECTANGULAR MATRIX");
+        matrixTemplate->setMatrixName("RECTANGULAR");
     }else{
         std::cout << "Some error at create matrix matrixFactoryType." << std::endl;
         return nullptr;

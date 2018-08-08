@@ -13,13 +13,13 @@ public:
     /*Constructors and Destructor.*/
     MatrixTemplate(int r, int c) ; /*tested*/
     MatrixTemplate(const MatrixTemplate& mt);/*tested*/
-    ~MatrixTemplate();
+    ~MatrixTemplate(); /*tested*/
 
     /*Matrix Operations*/
     virtual MatrixTemplate getTranspose() const;/*tested*/
     virtual MatrixTemplate<T> selectRow(int rowNum);/*tested*/
     virtual MatrixTemplate<T> selectColumn(int colNum);/*tested*/
-    virtual MatrixTemplate<T> swapRows(int i, int j);
+    virtual MatrixTemplate<T> swapRows(int i, int j); /*TODO*/
     virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
     virtual void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
@@ -33,8 +33,9 @@ public:
     virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator*(const T& num);/*tested*/
-    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator/(const T& num); /*TODO testing...*/
+    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
     virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
     virtual bool operator!=(const MatrixTemplate<T>& mt) const;/*tested*/

@@ -6,7 +6,7 @@
 
 template <class T>
 ColumnMatrix<T>::ColumnMatrix(int r, int c) : MatrixTemplate<T>(r,1){
-    this->setMatrixName("COLUMN MATRIX");
+    this->setMatrixName("COLUMN");
     //std::cout << "\t" << this->getMatrixName() << std::endl;
 }
 

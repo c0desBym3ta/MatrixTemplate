@@ -191,18 +191,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator*(const T& num){
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt){
-    if(_rows == mt._columns && _columns == mt._rows){
-        MatrixTemplate<T> subMatrix(_rows, _columns);
-        for(int i =0; i<_rows*_columns; i++){
-            subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];
-        }
-        return subMatrix;
-    }
-    std::cout << "ERROR SUB MATRIX" << std::endl;
-}
-
-template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator/(const MatrixTemplate<T>& mt){
     if(_rows == mt._columns && _columns == mt._rows){
         MatrixTemplate<T> divMatrix(_rows, _columns);
@@ -212,6 +200,26 @@ MatrixTemplate<T> MatrixTemplate<T>::operator/(const MatrixTemplate<T>& mt){
         return divMatrix;
     }
     std::cout << "ERROR DIV MATRIX" << std::endl;
+}
+
+template <class T>
+MatrixTemplate<T> MatrixTemplate<T>::operator/(const T &num) {
+    MatrixTemplate<T> divNum(_rows,_columns);
+    for(int i = 0; i <_rows*_columns; i++)
+        divNum._buffer[i] = _buffer[i]/num;
+    return divNum;
+}
+
+template <class T>
+MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt){
+    if(_rows == mt._columns && _columns == mt._rows){
+        MatrixTemplate<T> subMatrix(_rows, _columns);
+        for(int i =0; i<_rows*_columns; i++){
+            subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];
+        }
+        return subMatrix;
+    }
+    std::cout << "ERROR SUB MATRIX" << std::endl;
 }
 
 template <class T>
