@@ -5,9 +5,13 @@
 #ifndef MATRIXABSFACTORY_SQUAREMATRIX_H
 #define MATRIXABSFACTORY_SQUAREMATRIX_H
 
+#include "MatrixTemplate.h"
 
-class SquareMatrix {
-
+template <class T>
+class SquareMatrix : public MatrixTemplate<T> {
+public:
+    SquareMatrix(int r, int c, std::string n);
+    virtual ~SquareMatrix();
 };
 
 

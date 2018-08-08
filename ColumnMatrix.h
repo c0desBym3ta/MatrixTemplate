@@ -5,13 +5,12 @@
 #ifndef MATRIXABSFACTORY_COLUMNMATRIX_H
 #define MATRIXABSFACTORY_COLUMNMATRIX_H
 
-#include "MatrixTemplate.cpp"
+#include "MatrixTemplate.h"
 
 template <class T>
 class ColumnMatrix : public MatrixTemplate<T>{
 public:
-    //ColumnMatrix();
-    ColumnMatrix(int r, int c);
+    ColumnMatrix(int r, int c, std::string n);
     virtual ~ColumnMatrix();
 
 };

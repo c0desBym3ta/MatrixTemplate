@@ -5,9 +5,13 @@
 #ifndef MATRIXABSFACTORY_RECTANGULARMATRIX_H
 #define MATRIXABSFACTORY_RECTANGULARMATRIX_H
 
+#include "MatrixTemplate.h"
 
-class RectangularMatrix {
-
+template <class T>
+class RectangularMatrix : public MatrixTemplate<T> {
+public:
+    RectangularMatrix(int r, int c, std::string n);
+    virtual ~RectangularMatrix();
 };
 
 

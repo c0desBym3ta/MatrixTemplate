@@ -6,7 +6,20 @@
 
 /*Constructors and Destructors.*/
 template <class T>
-MatrixTemplate<T>::MatrixTemplate(int r, int c) : _rows(r), _columns(c) {
+MatrixTemplate<T>::MatrixTemplate(int r, int c, std::string n) : _rows(r), _columns(c), _matrixName(n) {
+    if (r < 1)
+        _rows = 1;
+    if (c < 1)
+        _columns = 1;
+
+    _buffer = new T[_rows * _columns];
+    srand((unsigned)time(0));
+    for(int i = 0; i <_rows*_columns; i++)
+        _buffer[i] = (rand()%10)+1;
+}
+
+template <class T>
+MatrixTemplate<T>::MatrixTemplate(int r, int c) {
     if (r < 1)
         _rows = 1;
     if (c < 1)
@@ -54,11 +67,13 @@ void MatrixTemplate<T>::printMatrix(std::string matrixName) {
 
 template <class T>
 void MatrixTemplate<T>::printMatrix() {
+    std::cout << "\n\t" << this->_matrixName << std::endl;
     for(int i = 0; i<_rows; i++) {
         for (int j = 0; j < _columns; j++)
             std::cout << "\t[" << _buffer[j + i * _columns] << "]";
         std::cout << std::endl;
     }
+
 }
 
 template <class T>

@@ -5,12 +5,12 @@
 #ifndef MATRIXABSFACTORY_ROWMATRIX_H
 #define MATRIXABSFACTORY_ROWMATRIX_H
 
-#include "MatrixTemplate.cpp"
+#include "MatrixTemplate.h"
 
 template <class T>
 class RowMatrix : public MatrixTemplate<T>{
 public:
-    RowMatrix(int r, int c);
+    RowMatrix(int r, int c, std::string n);
     virtual ~RowMatrix();
 
 };

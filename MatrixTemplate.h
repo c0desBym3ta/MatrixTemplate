@@ -11,7 +11,8 @@ template <class T>
 class MatrixTemplate {
 public:
     /*Constructors and Destructor.*/
-    MatrixTemplate(int r, int c) ; /*tested*/
+    MatrixTemplate(int r, int c, std::string n) ; /*tested*/
+    MatrixTemplate(int r, int c);
     MatrixTemplate(const MatrixTemplate& mt);/*tested*/
     ~MatrixTemplate();
 

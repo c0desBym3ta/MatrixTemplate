@@ -1,11 +1,16 @@
 #include "headers.h"
 #include "MatrixTemplate.cpp"
+#include "MatrixFactory.cpp"
+#include "MatrixFactoryType.cpp"
 
 int main(){
+    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
 
+    MatrixTemplate<int>* rectangularMatrix = matrixFactory->selectMatrixType(3,2);
+    MatrixTemplate<int>* squareMatrix = matrixFactory->selectMatrixType(3,3);
 
-
-
+    rectangularMatrix->printMatrix();
+    squareMatrix->printMatrix();
     
     return 0;
 }
