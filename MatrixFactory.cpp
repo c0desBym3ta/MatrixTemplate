@@ -7,7 +7,7 @@
 
 template <class T>
 MatrixFactory<T>::MatrixFactory() {
-    std::cout << "Loading matrix resources..." << std::endl;
+    std::cout << "\nLoading matrix resources..." << std::endl;
 }
 template <class T>
 MatrixFactory<T>::~MatrixFactory() {

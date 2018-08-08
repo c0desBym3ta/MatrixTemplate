@@ -44,7 +44,11 @@ void MatrixTemplate<T>::printMatrix(MatrixTemplate &matrixTemplate) {
 
 template <class T>
 void MatrixTemplate<T>::printMatrix(std::string matrixName) {
-    std::cout << "\n\t" << matrixName << std::endl;
+    std::cout << "\n\t" << matrixName << " MATRIX   " << std::endl;
+    std::cout << "\t";
+    for(int i =0; i != matrixName.size(); i++)
+        std::cout << "-";
+    std::cout << "-------" << std::endl;
     for(int i = 0; i<_rows; i++) {
         for (int j = 0; j < _columns; j++)
             std::cout << "\t[" << _buffer[j + i * _columns] << "]";
@@ -54,7 +58,11 @@ void MatrixTemplate<T>::printMatrix(std::string matrixName) {
 
 template <class T>
 void MatrixTemplate<T>::printMatrix() {
-    std::cout << "\n\t" << this->_matrixName << std::endl;
+    std::cout << "\n\t" << this->_matrixName << " MATRIX" << std::endl;
+    std::cout << "\t";
+    for(int i =0; i != this->_matrixName.size(); i++)
+        std::cout << "-";
+    std::cout << "-------" << std::endl;
     for(int i = 0; i<_rows; i++) {
         for (int j = 0; j < _columns; j++)
             std::cout << "\t[" << _buffer[j + i * _columns] << "]";
@@ -104,6 +112,7 @@ MatrixTemplate<T> MatrixTemplate<T>::swapRows(int i, int j) {
 
 template<class T>
 void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
+    std::cout << std:: endl;
     T value;
     for(int i = 0; i<_rows; i++){
         for(int j = 0; j <_columns; j++){
@@ -111,6 +120,7 @@ void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
             _buffer[j+i*_columns] = value;
         }
     }
+
 }
 
 template<class T>
