@@ -1,0 +1,14 @@
+//
+// Created by m3taprog on 08/08/18.
+//
+
+#ifndef MATRIXABSFACTORY_RECTANGULARMATRIX_H
+#define MATRIXABSFACTORY_RECTANGULARMATRIX_H
+
+
+class RectangularMatrix {
+
+};
+
+
+#endif //MATRIXABSFACTORY_RECTANGULARMATRIX_H

@@ -2,21 +2,55 @@
 #include "MatrixTemplate.cpp"
 
 int main(){
-    MatrixTemplate<int> firstMatrix(3,3);
-    firstMatrix.printMatrix("Fiirst Matrix");
-    MatrixTemplate<int> secondMatrix(3,3);
-    secondMatrix.printMatrix("Second Matrix");
 
-    MatrixTemplate<int> prodMatrix = firstMatrix+secondMatrix;
-    prodMatrix.printMatrix("PROD MATRIX");
 
-    if(secondMatrix != firstMatrix){
-        std::cout << "NOT EQUAL" << std::endl;
-    }else
-        std::cout << "EQUAL" << std::endl;
 
+
+    
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 void cls();

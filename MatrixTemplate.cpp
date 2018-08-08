@@ -111,6 +111,17 @@ void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
     }
 }
 
+template<class T>
+void MatrixTemplate<T>::manualInsertValues() {
+    T value;
+    for(int i = 0; i<_rows; i++){
+        for(int j = 0; j <_columns; j++){
+            std::cout << "Insert element at Matrix[" << i+1 << "]["<< j+1 << "]:"; std::cin >> value;
+            _buffer[j+i*_columns] = value;
+        }
+    }
+}
+
 /*Operator overloading.*/
 template <class T>
 MatrixTemplate<T>& MatrixTemplate<T>::operator=(const MatrixTemplate<T>& mt) {
@@ -221,4 +232,14 @@ void MatrixTemplate<T>::copier(const MatrixTemplate &mt) {
     _buffer = new T[_rows * _columns];
     for(int i = 0; i <_rows*_columns; i++)
         _buffer[i] = mt._buffer[i];
+}
+
+template<class T>
+const std::string &MatrixTemplate<T>::getMatrixName() const {
+    return _matrixName;
+}
+
+template<class T>
+void MatrixTemplate<T>::setMatrixName(const std::string &_matrixName) {
+    this->_matrixName = _matrixName;
 }

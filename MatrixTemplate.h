@@ -16,35 +16,39 @@ public:
     ~MatrixTemplate();
 
     /*Matrix Operations*/
-    MatrixTemplate getTranspose() const;/*tested*/
-    MatrixTemplate<T> selectRow(int rowNum);/*tested*/
-    MatrixTemplate<T> selectColumn(int colNum);/*tested*/
-    MatrixTemplate<T> swapRows(int i, int j);
-    T elementPosition(int rowPos, int colPos) const; /*tested*/
-    void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
-    void manualInsertValues(MatrixTemplate& newMatrixTemplate);
-    void printMatrix(MatrixTemplate& matrixTemplate); /*tested*/
-    void printMatrix(std::string matrixName); /*tested*/
-    void printMatrix(); /*tested*/
+    virtual MatrixTemplate getTranspose() const;/*tested*/
+    virtual MatrixTemplate<T> selectRow(int rowNum);/*tested*/
+    virtual MatrixTemplate<T> selectColumn(int colNum);/*tested*/
+    virtual MatrixTemplate<T> swapRows(int i, int j);
+    virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
+    virtual void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
+    virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
+    virtual void manualInsertValues(); /*tested*/
+    virtual void printMatrix(MatrixTemplate& matrixTemplate); /*tested*/
+    virtual void printMatrix(std::string matrixName); /*tested*/
+    virtual void printMatrix(); /*tested*/
 
     /*Operator overloading*/
-    MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
-    MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
-    MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
-    MatrixTemplate<T> operator*(const T& num);/*tested*/
-    MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
-    MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
-    MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
-    bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
-    bool operator!=(const MatrixTemplate<T>& mt) const;/*tested*/
+    virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator*(const T& num);/*tested*/
+    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
+    virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
+    virtual bool operator!=(const MatrixTemplate<T>& mt) const;/*tested*/
 
     /*Getters and setters*/
-    int getRows() const ; /*tested*/
-    int getColumns() const ; /*tested*/
+    virtual int getRows() const ; /*tested*/
+    virtual int getColumns() const ; /*tested*/
+    virtual const std::string &getMatrixName() const;
+    virtual void setMatrixName(const std::string &_matrixName);
 
-private:
+protected:
     int _rows, _columns;
     T* _buffer;
+    std::string _matrixName;
 
     void copier(const MatrixTemplate& mt);
 

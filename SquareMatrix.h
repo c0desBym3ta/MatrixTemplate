@@ -1,0 +1,14 @@
+//
+// Created by m3taprog on 08/08/18.
+//
+
+#ifndef MATRIXABSFACTORY_SQUAREMATRIX_H
+#define MATRIXABSFACTORY_SQUAREMATRIX_H
+
+
+class SquareMatrix {
+
+};
+
+
+#endif //MATRIXABSFACTORY_SQUAREMATRIX_H
