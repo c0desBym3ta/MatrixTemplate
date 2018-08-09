@@ -283,7 +283,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+=(const MatrixTemplate<T>& mt){
         return *this;
     }else{
         std::cout << "ERROR += " << std::endl;
-        //return mt;
     }
 }
 
