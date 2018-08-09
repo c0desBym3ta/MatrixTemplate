@@ -6,6 +6,7 @@
 #define MATRIXABSFACTORY_UTILS_H
 
 #include "headers.h"
+#include "MatrixTemplate.h"
 
 class Utils {
 public:
@@ -14,7 +15,6 @@ public:
     void optionsScreen();
     void line();
     void clearScreen();
-    void printMatrixList();
 };
 
 

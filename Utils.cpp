@@ -38,6 +38,4 @@ void Utils::clearScreen(){
     system("clear");
 }
 
-void Utils::printMatrixList() {
-    std::cout << "\nTest print matrix list." << std::endl;
-}
+
