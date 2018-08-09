@@ -180,7 +180,7 @@ bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T>& mt) const {
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt){
-    if(_rows == mt._columns && _columns == mt._rows){
+    if(_rows == mt._rows && _columns == mt._columns){
         MatrixTemplate<T> sumMatrix(_rows, _columns);
         for(int i = 0; i<_rows*_columns; i++){
             sumMatrix._buffer[i] = _buffer[i] + mt._buffer[i];
@@ -193,10 +193,13 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt){
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T>& mt){
     if(_rows == mt._columns ){
-        MatrixTemplate<T> prodMatrix(_rows, _columns);
-        for(int i =0; i<_rows*_columns; i++){
-            prodMatrix._buffer[i] = _buffer[i] * mt._buffer[i];
-        }
+        MatrixTemplate<T> prodMatrix(_rows, mt._columns);
+        for (int i = 0; i < _rows; i++)
+            for (int j = 0; j < mt._columns; j++) {
+                prodMatrix._buffer[i * mt._columns + j] = 0;
+                for (int h = 0; h < _columns; h++)
+                    prodMatrix._buffer[i * mt._columns + j] += _buffer[i * _columns + h] * mt._buffer[h * mt._columns + j];
+            }
         return prodMatrix;
     }
     std::cout << "ERROR PROD MATRIX" << std::endl;
@@ -282,4 +285,14 @@ const std::string &MatrixTemplate<T>::getMatrixName() const {
 template<class T>
 void MatrixTemplate<T>::setMatrixName(const std::string &_matrixName) {
     this->_matrixName = _matrixName;
+}
+
+template<class T>
+void MatrixTemplate<T>::setRows(int _rows) {
+    this->_rows = _rows;
+}
+
+template<class T>
+void MatrixTemplate<T>::setColumns(int _columns) {
+    this->_columns = _columns;
 }

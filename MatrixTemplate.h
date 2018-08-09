@@ -31,6 +31,7 @@ public:
     virtual void printMatrix(std::string matrixName); /*tested*/
     virtual void printMatrix(); /*tested*/
 
+
     /*Operator overloading*/
     virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
@@ -48,7 +49,8 @@ public:
     virtual int getColumns() const ; /*tested*/
     virtual const std::string &getMatrixName() const;
     virtual void setMatrixName(const std::string &_matrixName);
-
+    virtual void setRows(int _rows);
+    virtual void setColumns(int _columns);
 
 protected:
     int _rows, _columns;
