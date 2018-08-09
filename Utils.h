@@ -14,7 +14,7 @@ public:
     void optionsScreen();
     void line();
     void clearScreen();
-
+    void printMatrixList();
 };
 
 

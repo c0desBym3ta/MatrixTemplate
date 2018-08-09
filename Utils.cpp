@@ -37,3 +37,7 @@ void Utils::clearScreen(){
     std::cin.ignore().get();
     system("clear");
 }
+
+void Utils::printMatrixList() {
+    std::cout << "\nTest print matrix list." << std::endl;
+}

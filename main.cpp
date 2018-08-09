@@ -16,15 +16,7 @@ int main(){
 
     int i = 0;
 
-   /*
-    * int i = 1;
-    * for(std::list<MatrixTemplate<int>*>::iterator itr = listOfMatrix.begin(); itr != listOfMatrix.end(); ++itr) {
-        std::cout << "\nMATRIX ID:{" << i<< "}";
-        (*itr)->printMatrix();
-        i++;
-    }
-    */
-
+   
     std::cout <<"Enter number of rows: "; std::cin >> rows;
     std::cout << "Enter number of columns: "; std::cin >> columns;
     std::cout << "Enter matrix type (int, float,double): "; std::cin >> mType;
