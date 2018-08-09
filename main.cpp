@@ -78,6 +78,7 @@ void floatMatrix(){
 int intMatrix(){
     Utils utils;
     int rows,columns;
+    int count = 1;
     std::string mName, anws;
     MatrixUtils<int> matrixUtils;
 
@@ -106,8 +107,11 @@ int intMatrix(){
         zeroMatrix->matrixOfZeros();
         zeroMatrix->printMatrix();
         std::cout << "\nInsert to matrix list (yes,no): "; std::cin >> anws;
-        if(anws.compare("yes") == 0)
+        if(anws.compare("yes") == 0){
+            zeroMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(zeroMatrix);
+        }
     }else if(choice == 1){
         utils.line();
         MatrixTemplate<int>* randomMatrix = matrixFactory->selectMatrixType(rows,columns);
@@ -116,8 +120,11 @@ int intMatrix(){
         randomMatrix->randomMatrix();
         randomMatrix->printMatrix();
         std::cout << "\nInsert to matrix list (yes,no): "; std::cin >> anws;
-        if(anws.compare("yes") == 0)
+        if(anws.compare("yes") == 0) {
+            randomMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(randomMatrix);
+        }
     }else if(choice == 2){
         utils.line();
         MatrixTemplate<int>* manualMatrix = matrixFactory->selectMatrixType(rows,columns);
@@ -126,8 +133,11 @@ int intMatrix(){
         std::cout << "\nInserting your values to the matrix..." << std::endl;
         manualMatrix->printMatrix();
         std::cout << "\nInsert to matrix list (yes,no): "; std::cin >> anws;
-        if(anws.compare("yes") == 0)
+        if(anws.compare("yes") == 0) {
+            manualMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(manualMatrix);
+        }
     }else if(choice == 3){
         utils.line();
         MatrixTemplate<int>* seqMatrix = matrixFactory->selectMatrixType(rows,columns);
@@ -136,8 +146,11 @@ int intMatrix(){
         seqMatrix->sequenceMatrix();
         seqMatrix->printMatrix();
         std::cout << "\nInsert to matrix list (yes,no): "; std::cin >> anws;
-        if(anws.compare("yes") == 0)
+        if(anws.compare("yes") == 0) {
+            seqMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(seqMatrix);
+        }
     }else{
         std::cout << "\nDefault selection option" << std::endl;
     }
@@ -179,6 +192,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            prodMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(prodMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -208,6 +223,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            prodNumMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(prodNumMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -241,6 +258,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            divMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(divMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -274,6 +293,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            addMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(addMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -306,6 +327,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            subMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(subMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -329,6 +352,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0) {
+            rowMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(rowMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -352,6 +377,8 @@ int intMatrix(){
         utils.line();
         std::cout << "Do you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes") == 0){
+            columnMatrix->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(columnMatrix);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
@@ -376,6 +403,8 @@ int intMatrix(){
         autoGenerated->printMatrix();
         std::cout << "\n\nDo you want to save this matrix: "; std::cin >> anws;
         if(anws.compare("yes")){
+            autoGenerated->setMatrixId(count);
+            count++;
             listOfMatrix.push_back(autoGenerated);
             std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
             utils.clearScreen();
