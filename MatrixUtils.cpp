@@ -7,6 +7,7 @@
 template <class T>
 void MatrixUtils<T>::printListOfMatrix(std::list<MatrixTemplate<T>*>& listOfMatrix) {
     for(auto itr : listOfMatrix) {
+        std::cout << "\nID: {" << itr->getMatrixId() << "}\t";
         (itr)->printMatrix();
     }
 }

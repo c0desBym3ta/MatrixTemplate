@@ -52,10 +52,22 @@ public:
     virtual void setRows(int _rows);
     virtual void setColumns(int _columns);
 
+    virtual void setMatrixId(int matrixId){this->matrixId = matrixId;}
+    virtual int getMatrixId(){return matrixId;}
+
+    T *get_buffer() const {
+        return _buffer;
+    }
+
+    void set_buffer(T *_buffer) {
+        MatrixTemplate::_buffer = _buffer;
+    }
+
 protected:
     int _rows, _columns;
     T* _buffer;
     std::string _matrixName;
+    int matrixId;
 
     void copier(const MatrixTemplate& mt);
 

@@ -15,6 +15,8 @@ public:
     void optionsScreen();
     void line();
     void clearScreen();
+    void readMatrix(int& rows, int& columns, std::string mName);
+    void readMatrix(int& rows, int& columns);
 };
 
 

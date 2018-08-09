@@ -13,6 +13,52 @@ int intMatrix();
 void floatMatrix();
 
 int main(){
+   /*
+    int count = 1;
+
+    MatrixUtils<int> matrixUtils;
+    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>();
+    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(3,3);
+    firstMatrix->setMatrixId(count);
+    count++;
+
+    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(3,3);
+    secondMatrix->setMatrixId(count);
+    count++;
+
+    MatrixTemplate<int>* thirdMatrix = matrixFactory->selectMatrixType(3,2);
+    thirdMatrix->setMatrixId(count);
+    count++;
+
+    MatrixTemplate<int>* fourthMatrix = matrixFactory->selectMatrixType(2,3);
+    fourthMatrix->setMatrixId(count);
+    count++;
+
+    std::list<MatrixTemplate<int>*> listOfMatrix;
+    listOfMatrix.push_back(firstMatrix);
+    listOfMatrix.push_back(secondMatrix);
+    listOfMatrix.push_back(thirdMatrix);
+    listOfMatrix.push_back(fourthMatrix);
+
+    matrixUtils.printListOfMatrix(listOfMatrix);
+
+
+    int matrixId;
+    bool found = false;
+    std::cout << "\nEnter matrix id to select: "; std::cin >> matrixId;
+    for(auto itr : listOfMatrix){
+        if((itr)->getMatrixId() == matrixId && found == false){
+            std::cout <<"Matri found!" << std::endl;
+            MatrixTemplate<int>* p = matrixFactory->selectMatrixType(itr->getRows(),itr->getColumns());
+            listOfMatrix.
+            p->printMatrix();
+            found = true;
+        }
+
+    }
+
+    return 0;
+ */
     std::string mType;
     std::cout << "Enter matrix type (int, float,double): "; std::cin >> mType;
 
@@ -110,17 +156,16 @@ int intMatrix(){
         utils.clearScreen();
         goto optionsScreen;
     }else if(opt == 2) {
-        std::cout <<"\nEnter first matrix rows: "; std::cin >> rows;
-        std::cout << "Enter first matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"first matrix");
         MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(rows,columns);
         firstMatrix->manualInsertValues();
         std::cout << std::endl;
 
-        std::cout <<"\nEnter second matrix rows: "; std::cin >> rows;
-        std::cout << "Enter second matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"second matrix");
         MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(rows,columns);
         secondMatrix->manualInsertValues();
         std::cout << std::endl;
+
         utils.clearScreen();
         std::cout << "Multiplying the following matrix...\n" << std::endl;
         firstMatrix->printMatrix("FIRST MATRIX");
@@ -144,8 +189,7 @@ int intMatrix(){
         }
     }else if(opt == 3){
         int mNum;
-        std::cout <<"\nEnter first matrix rows: "; std::cin >> rows;
-        std::cout << "Enter first matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns);
         MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(rows,columns);
         firstMatrix->manualInsertValues();
         std::cout << std::endl;
@@ -207,17 +251,16 @@ int intMatrix(){
             goto optionsScreen;
         }
     }else if(opt == 6){
-        std::cout <<"\nEnter first matrix rows: "; std::cin >> rows;
-        std::cout << "Enter first matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"first matrix");
         MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(rows,columns);
         firstMatrix->manualInsertValues();
         std::cout << std::endl;
 
-        std::cout <<"\nEnter second matrix rows: "; std::cin >> rows;
-        std::cout << "Enter second matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"second matrix");
         MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(rows,columns);
         secondMatrix->manualInsertValues();
         std::cout << std::endl;
+
         utils.clearScreen();
         std::cout << "Multiplying the following matrix...\n" << std::endl;
         firstMatrix->printMatrix("FIRST MATRIX");
@@ -240,18 +283,17 @@ int intMatrix(){
             goto optionsScreen;
         }
     }else if(opt == 7){
-        std::cout <<"\nEnter first matrix rows: "; std::cin >> rows;
-        std::cout << "Enter first matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"first matrix");
         MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(rows,columns);
         firstMatrix->manualInsertValues();
         std::cout << std::endl;
 
-        std::cout <<"\nEnter second matrix rows: "; std::cin >> rows;
-        std::cout << "Enter second matrix columns: "; std::cin >> columns;
+        utils.readMatrix(rows,columns,"second matrix");
         MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(rows,columns);
         secondMatrix->manualInsertValues();
         std::cout << std::endl;
         utils.clearScreen();
+
         std::cout << "Subtracting the following matrix...\n" << std::endl;
         firstMatrix->printMatrix("FIRST MATRIX");
         secondMatrix->printMatrix("SECOND MATRIX");
@@ -315,6 +357,30 @@ int intMatrix(){
             utils.clearScreen();
             goto optionsScreen;
         }else {
+            utils.clearScreen();
+            goto optionsScreen;
+        }
+    }else if(opt == 10){
+        int value, tRow, tCol;
+        utils.clearScreen();
+        std::cout << "\nSelect value of the following matrix to modify." << std::endl;
+        autoGenerated->printMatrix();
+        utils.line();
+        std::cout << "\nEnter the new value to insert in the matrix: "; std::cin >> value;
+        std::cout << "Enter row number of element to modify: "; std::cin >> tRow;
+        std::cout << "Enter columns number of elemenet to modify: "; std::cin >> tCol;
+        autoGenerated->modifyElement(tRow,tCol,value);
+        std::cout << "\nWe are now processing the request..." << std::endl;
+        utils.line();
+        autoGenerated->setMatrixName("CHANGED VALUE");
+        autoGenerated->printMatrix();
+        std::cout << "\n\nDo you want to save this matrix: "; std::cin >> anws;
+        if(anws.compare("yes")){
+            listOfMatrix.push_back(autoGenerated);
+            std::cout << "\n\nThe matrix is now saved to your list!" << std::endl;
+            utils.clearScreen();
+            goto optionsScreen;
+        }else{
             utils.clearScreen();
             goto optionsScreen;
         }
