@@ -422,5 +422,5 @@ int intMatrix(){
     utils.clearScreen();
     goto optionsScreen;
     }
-
+    return 0;
 }

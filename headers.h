@@ -9,4 +9,5 @@
 #include <cstdlib>
 #include <ctime>
 #include <list>
+#include <stdexcept>
 #endif //MATRIXABSFACTORY_HEADERS_H

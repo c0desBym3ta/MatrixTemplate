@@ -46,7 +46,7 @@ template <class T>
 void MatrixTemplate<T>::printMatrix(std::string matrixName) {
     std::cout << "\n\t" << matrixName << " MATRIX   " << std::endl;
     std::cout << "\t";
-    for(int i =0; i != matrixName.size(); i++)
+    for(unsigned short int i =0; i != matrixName.size(); i++)
         std::cout << "-";
     std::cout << "-------" << std::endl;
     for(int i = 0; i<_rows; i++) {
@@ -60,7 +60,7 @@ template <class T>
 void MatrixTemplate<T>::printMatrix() {
     std::cout << "\n\t" << this->_matrixName << " MATRIX" << std::endl;
     std::cout << "\t";
-    for(int i =0; i != this->_matrixName.size(); i++)
+    for(unsigned short int i =0; i != this->_matrixName.size(); i++)
         std::cout << "-";
     std::cout << "-------" << std::endl;
     for(int i = 0; i<_rows; i++) {
@@ -105,10 +105,12 @@ void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue)
         _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
 
+/*
 template<class T>
 MatrixTemplate<T> MatrixTemplate<T>::swapRows(int i, int j) {
 
 }
+ */
 
 template<class T>
 void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
@@ -180,16 +182,41 @@ bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T>& mt) const {
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt){
-    if(_rows == mt._rows && _columns == mt._columns){
+    if (_rows == mt._rows && _columns == mt._columns) {
         MatrixTemplate<T> sumMatrix(_rows, _columns);
-        for(int i = 0; i<_rows*_columns; i++){
+        for (int i = 0; i < _rows * _columns; i++) {
             sumMatrix._buffer[i] = _buffer[i] + mt._buffer[i];
         }
         return sumMatrix;
     }
     std::cout << "ERROR SUM MATRIX" << std::endl;
+   // return mt;
 }
 
+template <class T>
+MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T> &mt) const {
+    try {
+        if (_rows == mt._columns) {
+            MatrixTemplate<T> prodMatrix(_rows, mt._columns);
+            for (int i = 0; i < _rows; i++)
+                for (int j = 0; j < mt._columns; j++) {
+                    prodMatrix._buffer[i * mt._columns + j] = 0;
+                    for (int h = 0; h < _columns; h++)
+                        prodMatrix._buffer[i * mt._columns + j] +=
+                                _buffer[i * _columns + h] * mt._buffer[h * mt._columns + j];
+                }
+            return prodMatrix;
+        }else{
+            throw std::out_of_range("ERROR -1: First matrix row number not equal qith second's matrix columns number.");
+        }
+    }catch (std::out_of_range& e){
+        e.what();
+       // return mt;
+    }
+
+}
+
+/*
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T>& mt){
     if(_rows == mt._columns ){
@@ -204,7 +231,7 @@ MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T>& mt){
     }
     std::cout << "ERROR PROD MATRIX" << std::endl;
 }
-
+*/
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const T& num){
     MatrixTemplate<T> prodNum(_rows,_columns);
@@ -222,6 +249,7 @@ MatrixTemplate<T> MatrixTemplate<T>::operator/(const MatrixTemplate<T>& mt){
         }
         return divMatrix;
     }
+    //return mt;
     std::cout << "ERROR DIV MATRIX" << std::endl;
 }
 
@@ -235,8 +263,9 @@ MatrixTemplate<T> MatrixTemplate<T>::operator/(const T &num) {
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt){
+    MatrixTemplate<T> subMatrix(_rows, _columns);
     if(_rows == mt._columns && _columns == mt._rows){
-        MatrixTemplate<T> subMatrix(_rows, _columns);
+        //MatrixTemplate<T> subMatrix(_rows, _columns);
         for(int i =0; i<_rows*_columns; i++){
             subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];
         }
@@ -254,6 +283,7 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+=(const MatrixTemplate<T>& mt){
         return *this;
     }else{
         std::cout << "ERROR += " << std::endl;
+        //return mt;
     }
 }
 

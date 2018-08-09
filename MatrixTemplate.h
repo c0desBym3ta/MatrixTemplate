@@ -19,7 +19,7 @@ public:
     virtual MatrixTemplate getTranspose() const;/*tested*/
     virtual MatrixTemplate<T> selectRow(int rowNum);/*tested*/
     virtual MatrixTemplate<T> selectColumn(int colNum);/*tested*/
-    virtual MatrixTemplate<T> swapRows(int i, int j); /*TODO*/
+    //virtual MatrixTemplate<T> swapRows(int i, int j); /*TODO*/
     virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
     virtual void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
@@ -35,7 +35,7 @@ public:
     /*Operator overloading*/
     virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt);/*tested*/
-    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
+    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const; /*TODO testing*/
     virtual MatrixTemplate<T> operator*(const T& num);/*tested*/
     virtual MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator/(const T& num); /*tested*/
