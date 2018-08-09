@@ -23,6 +23,9 @@ public:
     virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
     virtual void modifyElement(int rowNum, int colNum, const T& newValue); /*tested*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
+    virtual void matrixOfZeros(); /*tested*/
+    virtual void randomMatrix(); /*tested*/
+    virtual void sequenceMatrix(); /*tested*/
     virtual void manualInsertValues(); /*tested*/
     virtual void printMatrix(MatrixTemplate& matrixTemplate); /*tested*/
     virtual void printMatrix(std::string matrixName); /*tested*/
@@ -34,7 +37,7 @@ public:
     virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator*(const T& num);/*tested*/
     virtual MatrixTemplate<T> operator/(const MatrixTemplate<T>& mt);/*tested*/
-    virtual MatrixTemplate<T> operator/(const T& num); /*TODO testing...*/
+    virtual MatrixTemplate<T> operator/(const T& num); /*tested*/
     virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt);/*tested*/
     virtual MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt);/*tested*/
     virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
@@ -45,6 +48,7 @@ public:
     virtual int getColumns() const ; /*tested*/
     virtual const std::string &getMatrixName() const;
     virtual void setMatrixName(const std::string &_matrixName);
+
 
 protected:
     int _rows, _columns;

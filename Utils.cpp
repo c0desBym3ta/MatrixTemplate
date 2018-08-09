@@ -21,9 +21,10 @@ void Utils::fillMatrix() {
 void Utils::optionsScreen() {
     std::cout <<"\n\tAVAILABLE MATRIX OPERATIONS" << std::endl;
     std::cout << "\t###########################" << std::endl;
-    std::cout << "0) Show available matrix.\n1) Multiply Matrix.\n2) Multiply Matrix by Number." << std::endl;
-    std::cout << "3) Divide Matrix.\n4) Divide Matrix by Number.\n5) Adding Matrix.\n6) Subtracting Matrix." << std::endl;
-    std::cout << "7) Select Row of the Matrix.\n8) Select Columna of the Matrix." << std::endl;
+    std::cout << "0) Create Another Matrix." << std::endl;
+    std::cout << "1) Show available matrix.\n2) Multiply Matrix.\n3) Multiply Matrix by Number." << std::endl;
+    std::cout << "4) Divide Matrix.\n5) Divide Matrix by Number.\n6) Adding Matrix.\n7) Subtracting Matrix." << std::endl;
+    std::cout << "8) Select Row of the Matrix.\n9) Select Columna of the Matrix." << std::endl;
     std::cout << "99) Exit from the program." << std::endl;
 }
 

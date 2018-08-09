@@ -6,6 +6,7 @@
 
 template <class T>
 void MatrixUtils<T>::printListOfMatrix(std::list<MatrixTemplate<T>*>& listOfMatrix) {
-    for(auto itr : listOfMatrix)
+    for(auto itr : listOfMatrix) {
         (itr)->printMatrix();
+    }
 }

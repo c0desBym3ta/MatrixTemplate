@@ -123,9 +123,29 @@ void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
 
 }
 
+template <class T>
+void MatrixTemplate<T>::matrixOfZeros() {
+    for(int i = 0; i <_rows*_columns; i++)
+        _buffer[i] = 0;
+}
+
+template <class T>
+void MatrixTemplate<T>::randomMatrix() {
+    srand((unsigned)time(0));
+    for(int i = 0; i <_rows*_columns; i++)
+        _buffer[i] = (rand()%10)+1;
+}
+
+template <class T>
+void MatrixTemplate<T>::sequenceMatrix() {
+    for(int i = 0; i<_rows*_columns; i++)
+        _buffer[i] = i+1;
+}
+
 template<class T>
 void MatrixTemplate<T>::manualInsertValues() {
     T value;
+    std::cout << std::endl;
     for(int i = 0; i<_rows; i++){
         for(int j = 0; j <_columns; j++){
             std::cout << "Insert element at Matrix[" << i+1 << "]["<< j+1 << "]:"; std::cin >> value;
