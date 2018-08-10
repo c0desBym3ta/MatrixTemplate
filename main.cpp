@@ -12,7 +12,7 @@
 int intMatrix();
 void floatMatrix();
 
-int main(){
+int main(int argc, char **argv){
     std::string mType;
 
     std::cout << "Enter matrix type (int, float, double): "; std::cin >> mType;
