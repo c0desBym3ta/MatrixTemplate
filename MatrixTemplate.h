@@ -17,9 +17,9 @@ public:
     ~MatrixTemplate(); /*tested*/
 
     /*Matrix Operations*/
-    virtual MatrixTemplate getTranspose() const;/*tested*/
-    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(MatrixException);/*tested*/
-    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(MatrixException);/*tested*/
+    virtual MatrixTemplate getTranspose() const;/*tested* OK/
+    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(MatrixException);/*tested OK*/
+    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(MatrixException);/*tested OK*/
     virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
     virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException); /*tested*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
@@ -37,18 +37,15 @@ public:
     virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
 
 
-    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested*/
-    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(MatrixException); /*tested*/
-    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested*/
-    virtual MatrixTemplate<T> operator+=(const MatrixTemplate<T>& mt) throw(MatrixException);/*tested*/
+    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested OK*/
+    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(MatrixException); /*tested OK*/
+    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested* OK*/
 
-    virtual MatrixTemplate<T> operator*(const T& num);/*tested*/
-    virtual MatrixTemplate<T> operator/(const T& num); /*tested*/
+    virtual MatrixTemplate<T> operator*(const T& num); /*tested OK*/
+    virtual MatrixTemplate<T> operator/(const T& num); /*tested OK*/
 
-
-
-    virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested*/
-    virtual bool operator!=(const MatrixTemplate<T>& mt) const;/*tested*/
+    virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested OK*/
+    virtual bool operator!=(const MatrixTemplate<T>& mt) const;/*tested OK*/
 
 
     /*Getters and setters*/
@@ -152,7 +149,7 @@ T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const {
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(MatrixException) {
-    if(this->_rows <= 0 || this->_rows > rowNum)
+    if(this->_rows <= 0 || rowNum > _rows)
         throw MatrixException("Invalid row selection.");
 
     MatrixTemplate<T> rowMatrix(1, _columns);
@@ -163,18 +160,18 @@ MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(MatrixExc
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(MatrixException) {
-    if(this->_columns <= 0 || this->_columns > colNum)
+    if(this->_columns <= 0 || colNum > _columns)
         throw MatrixException("Invalid columns selection.");
 
     MatrixTemplate<T> columnMatrix(_rows, 1);
     for(int j = 0; j<_rows; j++)
-        columnMatrix._buffer[j] = _buffer[j+_rows*(colNum-1)];
+        columnMatrix._buffer[j] = _buffer[j*_rows];
     return columnMatrix;
 }
 
 template <class T>
 void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException) {
-    if(this->_rows <= 0 || this->_rows > rowNum || this->_columns <= 0 || this->_columns > colNum)
+    if(_rows <= 0 || rowNum > _rows|| _columns <= 0 || colNum > _columns)
         throw MatrixException("Invalid number index.");
     _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
@@ -299,15 +296,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt) cons
         subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];
     }
     return subMatrix;
-}
-
-template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::operator+=(const MatrixTemplate<T>& mt) throw(MatrixException){
-    if(this->_rows != mt._rows || this->_columns != mt._columns)
-        throw MatrixException("Matrix are not compatible.");
-    for(int i =0; i<_rows*_columns; i++){
-        _buffer[i] = _buffer[i] + mt._buffer[i];
-    }
 }
 
 /*Getters and setters.*/
