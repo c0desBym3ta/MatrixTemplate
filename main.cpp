@@ -2,7 +2,7 @@
 #include "MatrixTemplate.h"
 #include "MatrixFactory.h"
 #include "MatrixFactoryType.h"
-#include "Utils.h"
+#include "Utils.cpp"
 #include "MatrixUtils.h"
 #include "SquareMatrix.h"
 
