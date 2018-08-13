@@ -2,6 +2,25 @@
 
 #include "../MatrixFactoryType.h"
 
+
+/*=============CONSTRUCTOR-DESTRUCTOR TESTING=================*/
+TEST(MatrixTemplate, testConstructor){
+    MatrixTemplate<int> testMatrix(3,3);
+    testMatrix.printMatrix();
+    bool anwser = true;
+    for(int i = 0; i<3; i++)
+        for(int j = 0; j<3; j++){
+            if(testMatrix.elementPosition(i,j) != 0)
+                anwser = false;
+            else
+                anwser = true;
+    }
+    ASSERT_EQ(anwser, true);
+}
+
+TEST(MatrixTemplate, testConstructorThrowException){
+    ASSERT_THROW(MatrixTemplate<int> testMatrix(0,0), MatrixException);
+}
 TEST(MatrixTemplate, testSquareMatrix){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* squareMarix = matrixFactory->selectMatrixType(2,2);
@@ -10,7 +29,6 @@ TEST(MatrixTemplate, testSquareMatrix){
         anwser = true;
     ASSERT_EQ(anwser, true);
 }
-
 TEST(MatrixTemplate, testRecMatrix){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* recMatrix = matrixFactory->selectMatrixType(2,3);
@@ -20,104 +38,7 @@ TEST(MatrixTemplate, testRecMatrix){
     ASSERT_EQ(anwser, true);
 }
 
-TEST(MatrixTemplate, testOperatorMul){
-    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
-    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);
-    firstMatrix->randomMatrix();
-    firstMatrix->modifyElement(1,1,2);
-    firstMatrix->modifyElement(1,2,2);
-    firstMatrix->modifyElement(2,1,2);
-    firstMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(2,2);
-    secondMatrix->modifyElement(1,1,2);
-    secondMatrix->modifyElement(1,2,2);
-    secondMatrix->modifyElement(2,1,2);
-    secondMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* resMatrix = matrixFactory->selectMatrixType(2,2);
-    (*resMatrix) = (*firstMatrix)*(*secondMatrix);
-    ASSERT_EQ(8,resMatrix->elementPosition(1,1));
-    ASSERT_EQ(8,resMatrix->elementPosition(1,2));
-    ASSERT_EQ(8,resMatrix->elementPosition(2,1));
-    ASSERT_EQ(8,resMatrix->elementPosition(2,2));
-}
-
-TEST(MatrixTemplate, testOperatorPlus){
-    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
-    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);
-    firstMatrix->randomMatrix();
-    firstMatrix->modifyElement(1,1,2);
-    firstMatrix->modifyElement(1,2,2);
-    firstMatrix->modifyElement(2,1,2);
-    firstMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(2,2);
-    secondMatrix->modifyElement(1,1,2);
-    secondMatrix->modifyElement(1,2,2);
-    secondMatrix->modifyElement(2,1,2);
-    secondMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* resMatrix = matrixFactory->selectMatrixType(2,2);
-    (*resMatrix) = (*firstMatrix)+(*secondMatrix);
-    ASSERT_EQ(4,resMatrix->elementPosition(1,1));
-    ASSERT_EQ(4,resMatrix->elementPosition(1,2));
-    ASSERT_EQ(4,resMatrix->elementPosition(2,1));
-    ASSERT_EQ(4,resMatrix->elementPosition(2,2));
-}
-
-TEST(MatrixTemplate, testOperatorMulNum){
-    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
-    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);
-    firstMatrix->randomMatrix();
-    firstMatrix->modifyElement(1,1,2);
-    firstMatrix->modifyElement(1,2,2);
-    firstMatrix->modifyElement(2,1,2);
-    firstMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(2,2);
-    *secondMatrix = (*firstMatrix)*2;
-    ASSERT_EQ(4,secondMatrix->elementPosition(1,1));
-    ASSERT_EQ(4,secondMatrix->elementPosition(1,2));
-    ASSERT_EQ(4,secondMatrix->elementPosition(2,1));
-    ASSERT_EQ(4,secondMatrix->elementPosition(2,2));
-}
-
-TEST(MatrixTemplate, testOperatorDivNum){
-    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
-    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);
-    firstMatrix->randomMatrix();
-    firstMatrix->modifyElement(1,1,2);
-    firstMatrix->modifyElement(1,2,2);
-    firstMatrix->modifyElement(2,1,2);
-    firstMatrix->modifyElement(2,2,2);
-    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(2,2);
-    *secondMatrix = (*firstMatrix)/2;
-    ASSERT_EQ(1,secondMatrix->elementPosition(1,1));
-    ASSERT_EQ(1,secondMatrix->elementPosition(1,2));
-    ASSERT_EQ(1,secondMatrix->elementPosition(2,1));
-    ASSERT_EQ(1,secondMatrix->elementPosition(2,2));
-}
-
-TEST(MatrixTemplate, testOperatorEqual){
-    MatrixTemplate<int> firstMatrix(2,2);
-    firstMatrix.modifyElement(1,1,2);
-    firstMatrix.modifyElement(1,2,2);
-    firstMatrix.modifyElement(2,1,2);
-    firstMatrix.modifyElement(2,2,2);
-    MatrixTemplate<int> secondMatrix = firstMatrix;
-    ASSERT_TRUE(firstMatrix==secondMatrix);
-}
-
-TEST(MatrixTemplate, testOperatorNotEquall){
-    MatrixTemplate<int> firstMatrix(2,2);
-    firstMatrix.modifyElement(1,1,2);
-    firstMatrix.modifyElement(1,2,2);
-    firstMatrix.modifyElement(2,1,2);
-    firstMatrix.modifyElement(2,2,2);
-    MatrixTemplate<int> secondMatrix(2,2);
-    secondMatrix.modifyElement(1,1,2);
-    secondMatrix.modifyElement(1,2,2);
-    secondMatrix.modifyElement(2,1,2);
-    secondMatrix.modifyElement(2,2,1);
-    ASSERT_TRUE(firstMatrix!=secondMatrix);
-}
-
+/*===================FUCNTION TESTING===============*/
 TEST(MatrixTemplate, testSelectRow){
     MatrixTemplate<int> firstMatrix(2,2);
     firstMatrix.randomMatrix();
@@ -127,7 +48,6 @@ TEST(MatrixTemplate, testSelectRow){
     ASSERT_EQ(firstMatrix.getColumns(), rowMatrix.getColumns());
     ASSERT_FALSE(firstMatrix.getRows()==rowMatrix.getRows());
 }
-
 TEST(MatrixTemplate, testSelectColumn){
     MatrixTemplate<int> firstMatrix(2,2);
     firstMatrix.randomMatrix();
@@ -137,7 +57,6 @@ TEST(MatrixTemplate, testSelectColumn){
     ASSERT_EQ(firstMatrix.getRows(), colMatrix.getRows());
     ASSERT_FALSE(firstMatrix.getColumns()==colMatrix.getColumns());
 }
-
 TEST(MatrixTemplate, testTranspose){
     MatrixTemplate<int> firstMatrix(2,2);
     firstMatrix.randomMatrix();
@@ -146,4 +65,44 @@ TEST(MatrixTemplate, testTranspose){
     ASSERT_EQ(firstMatrix.elementPosition(1,2), transposeMatrix.elementPosition(2,1));
     ASSERT_EQ(firstMatrix.elementPosition(2,1), transposeMatrix.elementPosition(1,2));
     ASSERT_EQ(firstMatrix.elementPosition(2,2), transposeMatrix.elementPosition(2,2));
+}
+TEST(MatrixTemplate, testElementPosition){
+    MatrixTemplate<int> firstMatrix(2,2);
+    firstMatrix.modifyElement(1,1,1);
+    firstMatrix.modifyElement(1,2,1);
+    firstMatrix.modifyElement(2,1,1);
+    firstMatrix.modifyElement(2,2,1);
+    firstMatrix.printMatrix();
+    firstMatrix.modifyElement(1,1,5);
+    ASSERT_TRUE(firstMatrix.elementPosition(1,1) == 5);
+    ASSERT_EQ(5, firstMatrix.elementPosition(1,1));
+}
+TEST(MatrixTemplate, testMofidyElement){
+    MatrixTemplate<int> testMatrix(2,2);
+    testMatrix.randomMatrix();
+    testMatrix.modifyElement(2,2,200);
+    ASSERT_TRUE(testMatrix.elementPosition(2,2) == 200);
+    ASSERT_EQ(200, testMatrix.elementPosition(2,2));
+}
+TEST(MatrixTemplate, testGetRows){
+    MatrixTemplate<int> testMatrix(3,2);
+    ASSERT_TRUE(testMatrix.getRows() == 3);
+}
+TEST(MatrixTemplate, testGetColumns){
+    MatrixTemplate<int> testMatrix(3,2);
+    ASSERT_TRUE(testMatrix.getColumns() == 2);
+}
+TEST(MatrixTemplate, testMatrixName){
+    MatrixTemplate<int> testMatrix(2,2);
+    testMatrix.setMatrixName("TEST");
+    ASSERT_EQ("TEST", testMatrix.getMatrixName());
+}
+TEST(MatrixTemplate, testRestOfSetters){
+    MatrixTemplate<int> testMatrix(1,1);
+    testMatrix.setMatrixName("TEST");
+    testMatrix.setRows(3);
+    testMatrix.setColumns(2);
+    ASSERT_TRUE(testMatrix.getRows() == 3);
+    ASSERT_TRUE(testMatrix.getColumns() == 2);
+    ASSERT_TRUE(testMatrix.getMatrixName().compare("TEST") == 0);
 }

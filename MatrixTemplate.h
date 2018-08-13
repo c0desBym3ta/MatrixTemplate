@@ -14,14 +14,15 @@ public:
     /*Constructors and Destructor.*/
     MatrixTemplate(int r, int c) throw(MatrixException); /*tested*/
     MatrixTemplate(const MatrixTemplate& mt);/*tested*/
-    ~MatrixTemplate(); /*tested*/
+    virtual ~MatrixTemplate(); /*tested*/
+
 
     /*Matrix Operations*/
-    virtual MatrixTemplate getTranspose() const;/*tested* OK/
+    virtual MatrixTemplate getTranspose() const;/*tested* OK*/
     virtual MatrixTemplate<T> selectRow(int rowNum) const throw(MatrixException);/*tested OK*/
     virtual MatrixTemplate<T> selectColumn(int colNum) const throw(MatrixException);/*tested OK*/
-    virtual T elementPosition(int rowPos, int colPos) const; /*tested*/
-    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException); /*tested*/
+    virtual T elementPosition(int rowPos, int colPos) const; /*tested OK*/
+    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException); /*tested OK*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
     virtual void matrixOfZeros(); /*tested*/
     virtual void randomMatrix(); /*tested*/
@@ -32,11 +33,8 @@ public:
     virtual void printMatrix(); /*tested*/
 
 
-
     /*Operator overloading*/
-    virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested*/
-
-
+    virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested OK*/
     virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested OK*/
     virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(MatrixException); /*tested OK*/
     virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested* OK*/
@@ -49,23 +47,15 @@ public:
 
 
     /*Getters and setters*/
-    virtual int getRows() const ; /*tested*/
-    virtual int getColumns() const ; /*tested*/
-    virtual const std::string &getMatrixName() const;
-    virtual void setMatrixName(const std::string &_matrixName);
-    virtual void setRows(int _rows);
-    virtual void setColumns(int _columns);
-
-    virtual void setMatrixId(int matrixId){this->matrixId = matrixId;}
-    virtual int getMatrixId(){return matrixId;}
-
-    T *get_buffer() const {
-        return _buffer;
-    }
-
-    void set_buffer(T *_buffer) {
-        MatrixTemplate::_buffer = _buffer;
-    }
+    virtual int getRows() const ; /*tested OK*/
+    virtual int getColumns() const ; /*tested OK*/
+    virtual const std::string &getMatrixName() const; /*tested OK*/
+    virtual void setMatrixName(const std::string &_matrixName); /*tested OK*/
+    virtual void setRows(int _rows); /*tested OK*/
+    virtual void setColumns(int _columns); /*testd OK*/
+    virtual void setMatrixId(int matrixId); /*tested*/
+    virtual int getMatrixId(); /*tested*/
+    T *get_buffer() const;
 
 protected:
     int _rows, _columns;
@@ -77,6 +67,8 @@ protected:
 
 };
 
+/*=================================IMPLEMENTATION/*=================================*/
+
 /*Constructors and Destructors.*/
 template <class T>
 MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(MatrixException) : _rows(r), _columns(c) {
@@ -85,7 +77,8 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(MatrixException) : _rows(r
     _buffer = new T[_rows * _columns];
     srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
-        _buffer[i] = (rand()%10)+1;
+        //_buffer[i] = (rand()%10)+1;
+        _buffer[i] = 0;
 }
 
 template <class T>
@@ -336,6 +329,21 @@ void MatrixTemplate<T>::setRows(int _rows) {
 template<class T>
 void MatrixTemplate<T>::setColumns(int _columns) {
     this->_columns = _columns;
+}
+
+template <class T>
+void MatrixTemplate<T>::setMatrixId(int matrixId) {
+    this->matrixId = matrixId;
+}
+
+template <class T>
+int MatrixTemplate<T>::getMatrixId() {
+    return matrixId;
+}
+
+template<class T>
+T *MatrixTemplate<T>::get_buffer() const {
+    return _buffer;
 }
 
 
