@@ -14,5 +14,16 @@ public:
     virtual ~SquareMatrix();
 };
 
+template <class T>
+SquareMatrix<T>::SquareMatrix(int r, int c) : MatrixTemplate<T>(r,c) {
+    this->setMatrixName("SQUARE");
+    //std::cout << "\t" << this->getMatrixName() << std::endl;
+}
+
+template <class T>
+SquareMatrix<T>::~SquareMatrix() {
+
+}
+
 
 #endif //MATRIXABSFACTORY_SQUAREMATRIX_H

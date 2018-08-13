@@ -15,4 +15,15 @@ public:
 };
 
 
+template <class T>
+RectangularMatrix<T>::RectangularMatrix(int r, int c) :  MatrixTemplate<T>(r,c){
+    this->setMatrixName("RECTANGURAL");
+    // std::cout << "\t" << this->getMatrixName() << std::endl;
+}
+
+template <class T>
+RectangularMatrix<T>::~RectangularMatrix() {
+
+}
+
 #endif //MATRIXABSFACTORY_RECTANGULARMATRIX_H

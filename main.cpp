@@ -1,9 +1,10 @@
 #include "headers.h"
-#include "MatrixTemplate.cpp"
-#include "MatrixFactory.cpp"
-#include "MatrixFactoryType.cpp"
+#include "MatrixTemplate.h"
+#include "MatrixFactory.h"
+#include "MatrixFactoryType.h"
 #include "Utils.h"
-#include "MatrixUtils.cpp"
+#include "MatrixUtils.h"
+#include "SquareMatrix.h"
 
 
 
