@@ -18,10 +18,10 @@ public:
 
     /*Matrix Operations*/
     virtual MatrixTemplate getTranspose() const;/*tested* OK*/
-    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(std::out_of_range);/*tested OK*/
-    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(std::out_of_range);/*tested OK*/
-    virtual T elementPosition(int rowPos, int colPos) const; /*tested OK*/
-    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range); /*tested OK*/
+    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(std::out_of_range);/*tested OK THROW TEST*/
+    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(std::out_of_range);/*tested OK THROW TEST*/
+    virtual T elementPosition(int rowPos, int colPos) const throw(std::out_of_range); /*tested OK THROW TEST*/
+    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range); /*tested OK THROW TEST*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
     virtual void matrixOfZeros(); /*tested*/
     virtual void randomMatrix(); /*tested*/
@@ -34,9 +34,10 @@ public:
 
     /*Operator overloading*/
     virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested OK*/
-    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK*/
-    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(std::out_of_range); /*tested OK*/
-    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested* OK*/
+
+    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK THROW TEST*/
+    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(std::out_of_range); /*tested OK THROW TEST*/
+    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK*/
 
     virtual MatrixTemplate<T> operator*(const T& num); /*tested OK*/
     virtual MatrixTemplate<T> operator/(const T& num); /*tested OK*/
@@ -134,14 +135,8 @@ void MatrixTemplate<T>::printMatrix() {
 }
 
 template <class T>
-T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const {
-    T element = _buffer[(colPos-1) + (rowPos-1) * _columns];
-    return element;
-}
-
-template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(std::out_of_range) {
-    if(this->_rows <= 0 || rowNum > _rows)
+    if(rowNum <= 0 || rowNum > _rows)
         throw std::out_of_range("Invalid row selection.");
 
     MatrixTemplate<T> rowMatrix(1, _columns);
@@ -152,7 +147,7 @@ MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(std::out_
 
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(std::out_of_range) {
-    if(this->_columns <= 0 || colNum > _columns)
+    if(colNum <= 0 || colNum > _columns)
         throw std::out_of_range("Invalid columns selection.");
 
     MatrixTemplate<T> columnMatrix(_rows, 1);
@@ -163,11 +158,20 @@ MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(std::o
 
 template <class T>
 void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range) {
+    if(rowNum<=0 || rowNum > _rows || colNum <= 0 || colNum > _columns)
+        throw std::out_of_range("Invalid row or columns selection.");
     if(_rows <= 0 || rowNum > _rows|| _columns <= 0 || colNum > _columns)
         throw std::out_of_range("Invalid number index.");
     _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
 
+template <class T>
+T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const throw(std::out_of_range) {
+    if(rowPos<=0 || rowPos > _rows || colPos <= 0 || colPos > _columns)
+        throw std::out_of_range("Invalid row or columns selection.");
+    T element = _buffer[(colPos-1) + (rowPos-1) * _columns];
+    return element;
+}
 template<class T>
 void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
     std::cout << std:: endl;

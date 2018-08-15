@@ -27,6 +27,11 @@ TEST(MatrixTemplate, testOperatorMul){
     ASSERT_EQ(8,resMatrix->elementPosition(1,2));
     ASSERT_EQ(8,resMatrix->elementPosition(2,1));
     ASSERT_EQ(8,resMatrix->elementPosition(2,2));
+
+    MatrixTemplate<int> testFirstMatrix(2,2);
+    MatrixTemplate<int> testSecondMatrix(3,3);
+
+    EXPECT_THROW(testFirstMatrix*testSecondMatrix, std::out_of_range);
 }
 TEST(MatrixTemplate, testOperatorPlus){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
@@ -47,6 +52,36 @@ TEST(MatrixTemplate, testOperatorPlus){
     ASSERT_EQ(4,resMatrix->elementPosition(1,2));
     ASSERT_EQ(4,resMatrix->elementPosition(2,1));
     ASSERT_EQ(4,resMatrix->elementPosition(2,2));
+
+    MatrixTemplate<int> testFirstMatrix(2,2);
+    MatrixTemplate<int> testSecondMatrix(3,3);
+
+    EXPECT_THROW(testFirstMatrix+testSecondMatrix, std::out_of_range);
+}
+TEST(MatrixTemplate, testOperatorSub){
+    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
+    MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);
+    firstMatrix->randomMatrix();
+    firstMatrix->modifyElement(1,1,2);
+    firstMatrix->modifyElement(1,2,2);
+    firstMatrix->modifyElement(2,1,2);
+    firstMatrix->modifyElement(2,2,2);
+    MatrixTemplate<int>* secondMatrix = matrixFactory->selectMatrixType(2,2);
+    secondMatrix->modifyElement(1,1,2);
+    secondMatrix->modifyElement(1,2,2);
+    secondMatrix->modifyElement(2,1,2);
+    secondMatrix->modifyElement(2,2,2);
+    MatrixTemplate<int>* resMatrix = matrixFactory->selectMatrixType(2,2);
+    (*resMatrix) = (*firstMatrix)-(*secondMatrix);
+    ASSERT_EQ(0,resMatrix->elementPosition(1,1));
+    ASSERT_EQ(0,resMatrix->elementPosition(1,2));
+    ASSERT_EQ(0,resMatrix->elementPosition(2,1));
+    ASSERT_EQ(0,resMatrix->elementPosition(2,2));
+
+    MatrixTemplate<int> testFirstMatrix(2,2);
+    MatrixTemplate<int> testSecondMatrix(3,3);
+
+    EXPECT_THROW(testFirstMatrix-testSecondMatrix, std::out_of_range);
 }
 TEST(MatrixTemplate, testOperatorMulNum){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;

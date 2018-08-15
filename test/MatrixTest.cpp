@@ -21,18 +21,11 @@ TEST(MatrixTemplate, testConstructor){
 TEST(MatrixTemplate, testConstructorThrowException){
     ASSERT_THROW(MatrixTemplate<int> testMatrix(0,0), std::out_of_range);
 }
-TEST(MatrixTemplate, testSquareMatrix){
-    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
-    MatrixTemplate<int>* squareMarix = matrixFactory->selectMatrixType(2,2);
-    bool anwser = false;
-    if(squareMarix->getRows() == squareMarix->getColumns())
-        anwser = true;
-    ASSERT_EQ(anwser, true);
-}
 TEST(MatrixTemplate, testRecMatrix){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* recMatrix = matrixFactory->selectMatrixType(2,3);
     bool anwser = false;
+
     if(recMatrix->getColumns() != recMatrix->getRows() && recMatrix->getRows() > 1 && recMatrix->getColumns() >1)
         anwser = true;
     ASSERT_EQ(anwser, true);
@@ -40,22 +33,14 @@ TEST(MatrixTemplate, testRecMatrix){
 
 /*===================FUCNTION TESTING===============*/
 TEST(MatrixTemplate, testSelectRow){
-    MatrixTemplate<int> firstMatrix(2,2);
-    firstMatrix.randomMatrix();
-    MatrixTemplate<int> rowMatrix = firstMatrix.selectRow(1);
-    ASSERT_EQ(firstMatrix.elementPosition(1,1), rowMatrix.elementPosition(1,1));
-    ASSERT_EQ(firstMatrix.elementPosition(1,2), rowMatrix.elementPosition(1,2));
-    ASSERT_EQ(firstMatrix.getColumns(), rowMatrix.getColumns());
-    ASSERT_FALSE(firstMatrix.getRows()==rowMatrix.getRows());
+    MatrixTemplate<int> testMatrix(2,2);
+    ASSERT_THROW(testMatrix.selectRow(3), std::out_of_range);
+    EXPECT_THROW(testMatrix.selectRow(0), std::out_of_range);
 }
 TEST(MatrixTemplate, testSelectColumn){
-    MatrixTemplate<int> firstMatrix(2,2);
-    firstMatrix.randomMatrix();
-    MatrixTemplate<int> colMatrix = firstMatrix.selectColumn(1);
-    ASSERT_EQ(firstMatrix.elementPosition(1,1), colMatrix.elementPosition(1,1));
-    ASSERT_EQ(firstMatrix.elementPosition(2,1), colMatrix.elementPosition(2,1));
-    ASSERT_EQ(firstMatrix.getRows(), colMatrix.getRows());
-    ASSERT_FALSE(firstMatrix.getColumns()==colMatrix.getColumns());
+    MatrixTemplate<int> testMatrix(2,2);
+    ASSERT_THROW(testMatrix.selectRow(3), std::out_of_range);
+    EXPECT_THROW(testMatrix.selectRow(0), std::out_of_range);
 }
 TEST(MatrixTemplate, testTranspose){
     MatrixTemplate<int> firstMatrix(2,2);
@@ -72,8 +57,10 @@ TEST(MatrixTemplate, testElementPosition){
     firstMatrix.modifyElement(1,2,1);
     firstMatrix.modifyElement(2,1,1);
     firstMatrix.modifyElement(2,2,1);
-    firstMatrix.printMatrix();
+    //firstMatrix.printMatrix();
     firstMatrix.modifyElement(1,1,5);
+    ASSERT_THROW(firstMatrix.modifyElement(1,5,1), std::out_of_range);
+    EXPECT_THROW(firstMatrix.modifyElement(1,0,0), std::out_of_range);
     ASSERT_TRUE(firstMatrix.elementPosition(1,1) == 5);
     ASSERT_EQ(5, firstMatrix.elementPosition(1,1));
 }
@@ -81,6 +68,8 @@ TEST(MatrixTemplate, testMofidyElement){
     MatrixTemplate<int> testMatrix(2,2);
     testMatrix.randomMatrix();
     testMatrix.modifyElement(2,2,200);
+    ASSERT_THROW(testMatrix.modifyElement(2,9,4), std::out_of_range);
+    ASSERT_THROW(testMatrix.modifyElement(0,0,4), std::out_of_range);
     ASSERT_TRUE(testMatrix.elementPosition(2,2) == 200);
     ASSERT_EQ(200, testMatrix.elementPosition(2,2));
 }
