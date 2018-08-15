@@ -17,9 +17,8 @@ public:
 template <class T>
 SquareMatrix<T>::SquareMatrix(int r, int c) throw(std::range_error) : MatrixTemplate<T>(r,c) {
     if(this->_rows != this->_columns)
-        throw std::range_error("ERROR Square matrix: Rows must equal with columns");
-    else
-        this->setMatrixName("SQUARE");
+        throw std::range_error("ERROR Square matrix: Rows must equal with columns or 0.");
+    this->setMatrixName("SQUARE");
     //std::cout << "\t" << this->getMatrixName() << std::endl;
 }
 

@@ -12,7 +12,7 @@ TEST(MatrixTemplate, testSquareMatrix){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* squareMarix = matrixFactory->selectMatrixType(2,2);
     bool anwser = false;
-    if(squareMarix->getRows() == squareMarix->getColumns())
+    if(squareMarix->getRows() == squareMarix->getColumns() && squareMarix->getRows() > 0 && squareMarix->getColumns() > 0)
         anwser = true;
     ASSERT_EQ(anwser, true);
 }
