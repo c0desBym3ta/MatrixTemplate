@@ -19,7 +19,7 @@ TEST(MatrixTemplate, testConstructor){
 }
 
 TEST(MatrixTemplate, testConstructorThrowException){
-    ASSERT_THROW(MatrixTemplate<int> testMatrix(0,0), MatrixException);
+    ASSERT_THROW(MatrixTemplate<int> testMatrix(0,0), std::out_of_range);
 }
 TEST(MatrixTemplate, testSquareMatrix){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;

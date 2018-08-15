@@ -6,23 +6,22 @@
 #define MATRIXABSFACTORY_MATRIXTEMPLATE_H
 
 #include "headers.h"
-#include "MatrixException.h"
 
 template <class T>
 class MatrixTemplate {
 public:
     /*Constructors and Destructor.*/
-    MatrixTemplate(int r, int c) throw(MatrixException); /*tested*/
+    MatrixTemplate(int r, int c) throw(std::out_of_range); /*tested*/
     MatrixTemplate(const MatrixTemplate& mt);/*tested*/
     virtual ~MatrixTemplate(); /*tested*/
 
 
     /*Matrix Operations*/
     virtual MatrixTemplate getTranspose() const;/*tested* OK*/
-    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(MatrixException);/*tested OK*/
-    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(MatrixException);/*tested OK*/
+    virtual MatrixTemplate<T> selectRow(int rowNum) const throw(std::out_of_range);/*tested OK*/
+    virtual MatrixTemplate<T> selectColumn(int colNum) const throw(std::out_of_range);/*tested OK*/
     virtual T elementPosition(int rowPos, int colPos) const; /*tested OK*/
-    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException); /*tested OK*/
+    virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range); /*tested OK*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
     virtual void matrixOfZeros(); /*tested*/
     virtual void randomMatrix(); /*tested*/
@@ -35,9 +34,9 @@ public:
 
     /*Operator overloading*/
     virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested OK*/
-    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested OK*/
-    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(MatrixException); /*tested OK*/
-    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(MatrixException);/*tested* OK*/
+    virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK*/
+    virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(std::out_of_range); /*tested OK*/
+    virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested* OK*/
 
     virtual MatrixTemplate<T> operator*(const T& num); /*tested OK*/
     virtual MatrixTemplate<T> operator/(const T& num); /*tested OK*/
@@ -71,9 +70,9 @@ protected:
 
 /*Constructors and Destructors.*/
 template <class T>
-MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(MatrixException) : _rows(r), _columns(c) {
+MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(std::out_of_range) : _rows(r), _columns(c) {
     if(this->_rows <= 0 || this->_columns <= 0)
-        throw MatrixException("Number of rows and columns must be positive.");
+        throw std::out_of_range("Number of rows and columns must be positive.");
     _buffer = new T[_rows * _columns];
     srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
@@ -141,9 +140,9 @@ T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const {
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(MatrixException) {
+MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(std::out_of_range) {
     if(this->_rows <= 0 || rowNum > _rows)
-        throw MatrixException("Invalid row selection.");
+        throw std::out_of_range("Invalid row selection.");
 
     MatrixTemplate<T> rowMatrix(1, _columns);
     for(int i = 0; i<_columns; i++)
@@ -152,9 +151,9 @@ MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(MatrixExc
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(MatrixException) {
+MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(std::out_of_range) {
     if(this->_columns <= 0 || colNum > _columns)
-        throw MatrixException("Invalid columns selection.");
+        throw std::out_of_range("Invalid columns selection.");
 
     MatrixTemplate<T> columnMatrix(_rows, 1);
     for(int j = 0; j<_rows; j++)
@@ -163,9 +162,9 @@ MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(Matrix
 }
 
 template <class T>
-void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) throw(MatrixException) {
+void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range) {
     if(_rows <= 0 || rowNum > _rows|| _columns <= 0 || colNum > _columns)
-        throw MatrixException("Invalid number index.");
+        throw std::out_of_range("Invalid number index.");
     _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
 
@@ -239,9 +238,9 @@ bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T>& mt) const {
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt) const throw(MatrixException){
+MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range){
     if(this->_rows != mt._rows || this->_columns != mt._columns)
-        throw MatrixException("Not compatible matrix for addition operation.");
+        throw std::out_of_range("Not compatible matrix for addition operation.");
     MatrixTemplate<T> sumMatrix(_rows, _columns);
     for (int i = 0; i < _rows * _columns; i++) {
         sumMatrix._buffer[i] = _buffer[i] + mt._buffer[i];
@@ -250,9 +249,9 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt) cons
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T> &mt) const throw(MatrixException){
+MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T> &mt) const throw(std::out_of_range){
     if(this->_columns != mt._rows)
-        throw MatrixException("Now compatible columns and rows for moltiplication.");
+        throw std::out_of_range("Now compatible columns and rows for moltiplication.");
     MatrixTemplate<T> prodMatrix(_rows, mt._columns);
     for (int i = 0; i < _rows; i++)
         for (int j = 0; j < mt._columns; j++) {
@@ -281,9 +280,9 @@ MatrixTemplate<T> MatrixTemplate<T>::operator/(const T &num) {
 }
 
 template <class T>
-MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt) const throw(MatrixException){
+MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range){
     if(this->_rows != mt._rows || this->_columns != mt._columns)
-        throw MatrixException("Not compatible matrix for subtraction operation.");
+        throw std::out_of_range("Not compatible matrix for subtraction operation.");
     MatrixTemplate<T> subMatrix(_rows, _columns);
     for (int i = 0; i < _rows * _columns; i++) {
         subMatrix._buffer[i] = _buffer[i] - mt._buffer[i];

@@ -6,8 +6,6 @@
 #define MATRIXABSFACTORY_MATRIXFACTORYTYPE_H
 
 #include "MatrixFactory.h"
-#include "RowMatrix.h"
-#include "ColumnMatrix.h"
 #include "SquareMatrix.h"
 #include "RectangularMatrix.h"
 
@@ -19,17 +17,16 @@ public:
     //virtual std::unique_ptr<MatrixTemplate<T>> createMatrix(int r, int c) override ;
 };
 
-
 template <class T>
 MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c){
     MatrixTemplate<T>* matrixTemplate;
     std::cout << std::endl;
     if(r == 1 && c > 0) {
-        matrixTemplate = new RowMatrix<T>(r, c);
+        matrixTemplate = new RectangularMatrix<T>(1, c);
         std::cout << "You have selected a row (" <<r <<  "x" << c <<  ") matrix." << std::endl;
         matrixTemplate->setMatrixName("ROW");
     }else if(r > 0 && c == 1) {
-        matrixTemplate = new ColumnMatrix<T>(r, c);
+        matrixTemplate = new RectangularMatrix<T>(r, 1);
         std::cout << "You have selected a column (" <<r <<  "x" << c <<  ") matrix." << std::endl;
         matrixTemplate->setMatrixName("COLUMN");
     }else if(r == c) {

@@ -28,7 +28,7 @@ public:
         std::cout << "0) Create Another Matrix." << std::endl;
         std::cout << "1) Show available matrix.\n2) Multiply Matrix.\n3) Multiply Matrix by Number." << std::endl;
         std::cout << "4) Edit Value Matrix.\n5) Divide Matrix by Number.\n6) Adding Matrix.\n7) Subtracting Matrix." << std::endl;
-        std::cout << "8) Select Row of the Matrix.\n9) Select Columna of the Matrix.\n10) UNDER CONSTRUCTION" << std::endl;
+        std::cout << "8) Select Row of the Matrix.\n9) Select Column of the Matrix.\n10) UNDER CONSTRUCTION" << std::endl;
         std::cout << "99) Exit from the program." << std::endl;
     }
     void line(){
