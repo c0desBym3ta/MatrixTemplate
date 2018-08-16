@@ -6,8 +6,6 @@
 
 #include "../MatrixFactoryType.h"
 
-/*===========OPERATOR TESTING==============*/
-
 TEST(MatrixTemplate, testOperatorMul){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* firstMatrix = matrixFactory->selectMatrixType(2,2);

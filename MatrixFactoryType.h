@@ -13,12 +13,11 @@
 template <class T>
 class MatrixFactoryType : public MatrixFactory<T>{
 public:
-    virtual MatrixTemplate<T>* createMatrix(int c, int r) override;
-    //virtual std::unique_ptr<MatrixTemplate<T>> createMatrix(int r, int c) override ;
+    virtual MatrixTemplate<T>* createMatrix(int c, int r) throw(std::out_of_range) override;
 };
 
 template <class T>
-MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c){
+MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c) throw(std::out_of_range){
     MatrixTemplate<T>* matrixTemplate;
     std::cout << std::endl;
     if(r == 1 && c > 0) {
@@ -38,18 +37,10 @@ MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c){
         std::cout << "You have selected a rectangular (" <<r <<  "x" << c <<  ") matrix." << std::endl;
         matrixTemplate->setMatrixName("RECTANGULAR");
     }else{
-        std::cout << "Some error at create matrix matrixFactoryType." << std::endl;
-        return nullptr;
+        throw std::out_of_range("Rows and columns must be positive");
     }
     return matrixTemplate;
 }
 
-/*
-template <class T>
-std::unique_ptr<MatrixTemplate<T>> MatrixFactoryType<T>::createMatrix(int r, int c) {
-    //std::unique_ptr<MatrixTemplate<T>> matrixTemplate;
-    if(r == 1 && c > 0)
-        std::unique_ptr<MatrixTemplate<T>> matrixTemplate(new RowMatrix(r,c,"ROW MATRIX"));
-}*/
 
 #endif //MATRIXABSFACTORY_MATRIXFACTORYTYPE_H

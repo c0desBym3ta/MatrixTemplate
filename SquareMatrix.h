@@ -10,16 +10,20 @@
 template <class T>
 class SquareMatrix : public MatrixTemplate<T> {
 public:
-    SquareMatrix(int r, int c) throw(std::range_error);
+    SquareMatrix(int r, int c);
     virtual ~SquareMatrix();
 };
 
 template <class T>
-SquareMatrix<T>::SquareMatrix(int r, int c) throw(std::range_error) : MatrixTemplate<T>(r,c) {
-    if(this->_rows != this->_columns)
-        throw std::range_error("ERROR Square matrix: Rows must equal with columns or 0.");
+SquareMatrix<T>::SquareMatrix(int r, int c) : MatrixTemplate<T>(r,c) {
+    try {
+        if (this->_rows != this->_columns)
+            throw std::out_of_range("ERROR Square matrix: Rows must equal with columns or 0.");
+    }catch (std::out_of_range& e){
+        e.what();
+    }
     this->setMatrixName("SQUARE");
-    //std::cout << "\t" << this->getMatrixName() << std::endl;
+
 }
 
 template <class T>

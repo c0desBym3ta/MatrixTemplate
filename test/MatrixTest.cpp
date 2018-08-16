@@ -2,8 +2,6 @@
 
 #include "../MatrixFactoryType.h"
 
-
-/*=============CONSTRUCTOR-DESTRUCTOR TESTING=================*/
 TEST(MatrixTemplate, testConstructor){
     MatrixTemplate<int> testMatrix(3,3);
     testMatrix.printMatrix();
@@ -30,8 +28,6 @@ TEST(MatrixTemplate, testRecMatrix){
         anwser = true;
     ASSERT_EQ(anwser, true);
 }
-
-/*===================FUCNTION TESTING===============*/
 TEST(MatrixTemplate, testSelectRow){
     MatrixTemplate<int> testMatrix(2,2);
     ASSERT_THROW(testMatrix.selectRow(3), std::out_of_range);
@@ -57,7 +53,6 @@ TEST(MatrixTemplate, testElementPosition){
     firstMatrix.modifyElement(1,2,1);
     firstMatrix.modifyElement(2,1,1);
     firstMatrix.modifyElement(2,2,1);
-    //firstMatrix.printMatrix();
     firstMatrix.modifyElement(1,1,5);
     ASSERT_THROW(firstMatrix.modifyElement(1,5,1), std::out_of_range);
     EXPECT_THROW(firstMatrix.modifyElement(1,0,0), std::out_of_range);
