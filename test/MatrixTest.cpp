@@ -8,8 +8,8 @@ TEST(MatrixTemplate, testConstructor){
     MatrixTemplate<int> testMatrix(3,3);
     testMatrix.printMatrix();
     bool anwser = true;
-    for(int i = 1; i<=3; i++)
-        for(int j = 1; j<=3; j++){
+    for(int i = 1; i<=testMatrix.getRows(); i++)
+        for(int j = 1; j<=testMatrix.getColumns(); j++){
             if(testMatrix.elementPosition(i,j) != 0)
                 anwser = false;
             else

@@ -15,4 +15,7 @@ TEST(MatrixTemplate, testSquareMatrix){
     if(squareMarix->getRows() == squareMarix->getColumns() && squareMarix->getRows() > 0 && squareMarix->getColumns() > 0)
         anwser = true;
     ASSERT_EQ(anwser, true);
+    delete matrixFactory;
+    delete squareMarix;
+
 }

@@ -15,7 +15,6 @@ void floatMatrix();
 
 int main(int argc, char **argv){
     std::string mType;
-
     std::cout << "Enter matrix type (int, float, double): "; std::cin >> mType;
 
     if(mType.compare("int") == 0)
@@ -368,6 +367,7 @@ void floatMatrix(){
         utils.clearScreen();
         goto optionsScreen;
     }else if(opt == 99){
+        matrixUtils.deleteList(listOfMatrix);
         std::cout << "\nNow exiting form the program...";
         utils.clearScreen();
 

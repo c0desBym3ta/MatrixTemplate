@@ -75,6 +75,7 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(std::out_of_range) : _rows
     if(this->_rows <= 0 || this->_columns <= 0)
         throw std::out_of_range("Number of rows and columns must be positive.");
     _buffer = new T[_rows * _columns];
+    std::cout << "\nAllocated.\n" << std::endl;
     srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
         //_buffer[i] = (rand()%10)+1;
@@ -82,10 +83,17 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(std::out_of_range) : _rows
 }
 
 template <class T>
-MatrixTemplate<T>::MatrixTemplate(const MatrixTemplate &mt) {copier(mt);}
+MatrixTemplate<T>::MatrixTemplate(const MatrixTemplate &mt) {
+    copier(mt);
+}
 
 template <class T>
-MatrixTemplate<T>::~MatrixTemplate() {delete [] _buffer;}
+MatrixTemplate<T>::~MatrixTemplate() {
+    if(_buffer) {
+        delete[] _buffer;
+        std::cout << "\nDeleted." << std::endl;
+    }
+}
 
 /*Matrix operations.*/
 template <class T>

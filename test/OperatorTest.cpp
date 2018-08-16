@@ -32,6 +32,10 @@ TEST(MatrixTemplate, testOperatorMul){
     MatrixTemplate<int> testSecondMatrix(3,3);
 
     EXPECT_THROW(testFirstMatrix*testSecondMatrix, std::out_of_range);
+    delete matrixFactory;
+    delete firstMatrix;
+    delete secondMatrix;
+    delete resMatrix;
 }
 TEST(MatrixTemplate, testOperatorPlus){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
@@ -57,6 +61,11 @@ TEST(MatrixTemplate, testOperatorPlus){
     MatrixTemplate<int> testSecondMatrix(3,3);
 
     EXPECT_THROW(testFirstMatrix+testSecondMatrix, std::out_of_range);
+    delete matrixFactory;
+    delete firstMatrix;
+    delete secondMatrix;
+    delete resMatrix;
+
 }
 TEST(MatrixTemplate, testOperatorSub){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
@@ -82,6 +91,10 @@ TEST(MatrixTemplate, testOperatorSub){
     MatrixTemplate<int> testSecondMatrix(3,3);
 
     EXPECT_THROW(testFirstMatrix-testSecondMatrix, std::out_of_range);
+    delete matrixFactory;
+    delete firstMatrix;
+    delete secondMatrix;
+    delete resMatrix;
 }
 TEST(MatrixTemplate, testOperatorMulNum){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
@@ -97,6 +110,9 @@ TEST(MatrixTemplate, testOperatorMulNum){
     ASSERT_EQ(4,secondMatrix->elementPosition(1,2));
     ASSERT_EQ(4,secondMatrix->elementPosition(2,1));
     ASSERT_EQ(4,secondMatrix->elementPosition(2,2));
+    delete matrixFactory;
+    delete firstMatrix;
+    delete secondMatrix;
 }
 TEST(MatrixTemplate, testOperatorDivNum){
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
