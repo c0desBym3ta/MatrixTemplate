@@ -6,8 +6,8 @@
 
 #include "../MatrixFactoryType.h"
 
-TEST(MatrixTemplate, testSquareMatrix){
-    //EXPECT_THROW(SquareMatrix<int> squareMatrix(2,3), std::range_error);
+TEST(SquareMatrix, testSquareMatrix){
+   // EXPECT_THROW(SquareMatrix<int> squareMatrix(2,3), std::out_of_range);
     MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
     MatrixTemplate<int>* squareMarix = matrixFactory->selectMatrixType(2,2);
     bool anwser = false;

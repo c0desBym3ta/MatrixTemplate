@@ -5,7 +5,7 @@
 
 #include "../MatrixFactoryType.h"
 
-TEST(MatrixTemplate, testRectangularMatrix){
+TEST(RectangularMatrix, testRectangularMatrix){
     //EXPECT_THROW(RectangularMatrix<int> testMatrix(2,2), std::out_of_range);
     bool anwser = false;
     RectangularMatrix<int> recMatrix(2,3);

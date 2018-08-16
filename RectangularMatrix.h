@@ -16,13 +16,16 @@ public:
 
 
 template <class T>
-RectangularMatrix<T>::RectangularMatrix(int r, int c)  :  MatrixTemplate<T>(r,c){
-    try {
-        if (this->_rows == this->_columns || this->_rows <= 0 || this->_columns <= 0)
+RectangularMatrix<T>::RectangularMatrix(int r, int c) :  MatrixTemplate<T>(r,c){
+   try {
+        if (this->_rows == this->_columns || this->_rows <= 0 || this->_columns <= 0) {
+            std::cout << "Throwing" << std::endl;
             throw std::out_of_range("ERROR Rectangula matrix: Rows and columns must not be equal or 0.");
+        }
     }catch (std::out_of_range& e){
         e.what();
     }
+    std::cout << "Not throwing" << std::endl;
     this->setMatrixName("RECTANGURAL");
 }
 

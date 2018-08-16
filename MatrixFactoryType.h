@@ -37,7 +37,7 @@ MatrixTemplate<T>* MatrixFactoryType<T>::createMatrix(int r, int c) throw(std::o
         std::cout << "You have selected a rectangular (" <<r <<  "x" << c <<  ") matrix." << std::endl;
         matrixTemplate->setMatrixName("RECTANGULAR");
     }else{
-        throw std::out_of_range("Rows and columns must be positive");
+        throw std::out_of_range("Rows and columns must be positive.");
     }
     return matrixTemplate;
 }
