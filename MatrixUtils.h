@@ -25,8 +25,10 @@ void MatrixUtils<T>::printListOfMatrix(std::list<MatrixTemplate<T>*>& listOfMatr
 
 template <class T>
 void MatrixUtils<T>::deleteList(std::list<MatrixTemplate<T> *> &listOfMatrix) {
-    for(auto itr : listOfMatrix){
-        delete[] itr;
+    if(!listOfMatrix.empty()) {
+        for (auto itr : listOfMatrix) {
+            delete[] itr;
+        }
     }
     std::cout << "\nSuccessfully  deallocation." << std::endl;
 }

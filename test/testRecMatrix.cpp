@@ -6,7 +6,7 @@
 #include "../MatrixFactoryType.h"
 
 TEST(RectangularMatrix, testRectangularMatrix){
-    //EXPECT_THROW(RectangularMatrix<int> testMatrix(2,2), std::out_of_range);
+    EXPECT_THROW(RectangularMatrix<int> testMatrix(0,0), std::out_of_range);
     bool anwser = false;
     RectangularMatrix<int> recMatrix(2,3);
     if((recMatrix.getRows() != recMatrix.getColumns()) && (recMatrix.getColumns() > 0) && (recMatrix.getRows() > 0))
