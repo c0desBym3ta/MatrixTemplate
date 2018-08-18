@@ -22,7 +22,6 @@ void MatrixUtils<T>::printListOfMatrix(std::list<MatrixTemplate<T>*>& listOfMatr
         (itr)->printMatrix();
     }
 }
-
 template <class T>
 void MatrixUtils<T>::deleteList(std::list<MatrixTemplate<T> *> &listOfMatrix) {
     if(!listOfMatrix.empty()) {

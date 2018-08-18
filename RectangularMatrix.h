@@ -14,7 +14,6 @@ public:
     virtual ~RectangularMatrix();
 };
 
-
 template <class T>
 RectangularMatrix<T>::RectangularMatrix(int r, int c) :  MatrixTemplate<T>(r,c){
    try {

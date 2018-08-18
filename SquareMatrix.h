@@ -25,7 +25,6 @@ SquareMatrix<T>::SquareMatrix(int r, int c) : MatrixTemplate<T>(r,c) {
     this->setMatrixName("SQUARE");
 
 }
-
 template <class T>
 SquareMatrix<T>::~SquareMatrix() {
 

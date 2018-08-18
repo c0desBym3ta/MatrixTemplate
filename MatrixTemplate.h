@@ -15,7 +15,6 @@ public:
     MatrixTemplate(const MatrixTemplate& mt);/*tested*/
     virtual ~MatrixTemplate(); /*tested*/
 
-
     /*Matrix Operations*/
     virtual MatrixTemplate getTranspose() const;/*tested* OK*/
     virtual MatrixTemplate<T> selectRow(int rowNum) const throw(std::out_of_range);/*tested OK THROW TEST*/
@@ -31,20 +30,15 @@ public:
     virtual void printMatrix(std::string matrixName); /*tested*/
     virtual void printMatrix(); /*tested*/
 
-
     /*Operator overloading*/
-    virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested OK*/
-
     virtual MatrixTemplate<T> operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK THROW TEST*/
     virtual MatrixTemplate<T> operator*(const MatrixTemplate<T>& mt) const throw(std::out_of_range); /*tested OK THROW TEST*/
     virtual MatrixTemplate<T> operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range);/*tested OK*/
-
     virtual MatrixTemplate<T> operator*(const T& num); /*tested OK*/
+    virtual MatrixTemplate<T>& operator=(const MatrixTemplate<T>& mt);/*tested OK*/
     virtual MatrixTemplate<T> operator/(const T& num); /*tested OK*/
-
     virtual bool operator==(const MatrixTemplate<T>& mt) const;/*tested OK*/
     virtual bool operator!=(const MatrixTemplate<T>& mt) const;/*tested OK*/
-
 
     /*Getters and setters*/
     virtual int getRows() const ; /*tested OK*/
@@ -80,12 +74,10 @@ MatrixTemplate<T>::MatrixTemplate(int r, int c) throw(std::out_of_range) : _rows
         //_buffer[i] = (rand()%10)+1;
         _buffer[i] = 0;
 }
-
 template <class T>
 MatrixTemplate<T>::MatrixTemplate(const MatrixTemplate &mt) {
     copier(mt);
 }
-
 template <class T>
 MatrixTemplate<T>::~MatrixTemplate() {
     if(_buffer)
@@ -109,7 +101,6 @@ void MatrixTemplate<T>::printMatrix(MatrixTemplate &matrixTemplate) {
         std::cout << std::endl;
     }
 }
-
 template <class T>
 void MatrixTemplate<T>::printMatrix(std::string matrixName) {
     std::cout << "\n\t" << matrixName << " MATRIX   " << std::endl;
@@ -123,7 +114,6 @@ void MatrixTemplate<T>::printMatrix(std::string matrixName) {
         std::cout << std::endl;
     }
 }
-
 template <class T>
 void MatrixTemplate<T>::printMatrix() {
     std::cout << "\n\t" << this->_matrixName << " MATRIX" << std::endl;
@@ -138,7 +128,6 @@ void MatrixTemplate<T>::printMatrix() {
     }
 
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(std::out_of_range) {
     if(rowNum <= 0 || rowNum > _rows)
@@ -149,7 +138,6 @@ MatrixTemplate<T> MatrixTemplate<T>::selectRow(int rowNum) const throw(std::out_
         rowMatrix._buffer[i] = _buffer[i+_columns*(rowNum-1)];
     return rowMatrix;
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(std::out_of_range) {
     if(colNum <= 0 || colNum > _columns)
@@ -160,7 +148,6 @@ MatrixTemplate<T> MatrixTemplate<T>::selectColumn(int colNum) const throw(std::o
         columnMatrix._buffer[j] = _buffer[j*_rows];
     return columnMatrix;
 }
-
 template <class T>
 void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range) {
     if(rowNum<=0 || rowNum > _rows || colNum <= 0 || colNum > _columns)
@@ -169,7 +156,6 @@ void MatrixTemplate<T>::modifyElement(int rowNum, int colNum, const T& newValue)
         throw std::out_of_range("Invalid number index.");
     _buffer[(rowNum-1)* _columns + (colNum-1)] = newValue;
 }
-
 template <class T>
 T MatrixTemplate<T>::elementPosition(int rowPos, int colPos) const throw(std::out_of_range) {
     if(rowPos<=0 || rowPos > _rows || colPos <= 0 || colPos > _columns)
@@ -187,28 +173,23 @@ void MatrixTemplate<T>::manualInsertValues(MatrixTemplate &newMatrixTemplate) {
             _buffer[j+i*_columns] = value;
         }
     }
-
 }
-
 template <class T>
 void MatrixTemplate<T>::matrixOfZeros() {
     for(int i = 0; i <_rows*_columns; i++)
         _buffer[i] = 0;
 }
-
 template <class T>
 void MatrixTemplate<T>::randomMatrix() {
     srand((unsigned)time(0));
     for(int i = 0; i <_rows*_columns; i++)
         _buffer[i] = (rand()%10)+1;
 }
-
 template <class T>
 void MatrixTemplate<T>::sequenceMatrix() {
     for(int i = 0; i<_rows*_columns; i++)
         _buffer[i] = i+1;
 }
-
 template<class T>
 void MatrixTemplate<T>::manualInsertValues() {
     T value;
@@ -230,7 +211,6 @@ MatrixTemplate<T>& MatrixTemplate<T>::operator=(const MatrixTemplate<T>& mt) {
     }
     return *this;
 }
-
 template <class T>
 bool MatrixTemplate<T>::operator==(const MatrixTemplate<T>& mt) const{
     if(_rows == mt._rows || _columns == mt._columns) {
@@ -240,12 +220,10 @@ bool MatrixTemplate<T>::operator==(const MatrixTemplate<T>& mt) const{
     }
     return true;
 }
-
 template <class T>
 bool MatrixTemplate<T>::operator!=(const MatrixTemplate<T>& mt) const {
     return !(*this == mt);
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt) const throw(std::out_of_range){
     if(this->_rows != mt._rows || this->_columns != mt._columns)
@@ -256,7 +234,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator+(const MatrixTemplate<T>& mt) cons
     }
     return sumMatrix;
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T> &mt) const throw(std::out_of_range){
     if(this->_columns != mt._rows)
@@ -271,7 +248,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator*(const MatrixTemplate<T> &mt) cons
         }
     return prodMatrix;
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator*(const T& num){
     MatrixTemplate<T> prodNum(_rows,_columns);
@@ -279,7 +255,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator*(const T& num){
         prodNum._buffer[i] = num * _buffer[i];
     return prodNum;
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator/(const T &num) {
     MatrixTemplate<T> divNum(_rows,_columns);
@@ -287,7 +262,6 @@ MatrixTemplate<T> MatrixTemplate<T>::operator/(const T &num) {
         divNum._buffer[i] = _buffer[i]/num;
     return divNum;
 }
-
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::operator-(const MatrixTemplate<T>& mt) const throw(std::out_of_range){
     if(this->_rows != mt._rows || this->_columns != mt._columns)
@@ -304,12 +278,10 @@ template <class T>
 int MatrixTemplate<T>::getRows() const {
     return _rows;
 }
-
 template <class T>
 int MatrixTemplate<T>::getColumns() const {
     return _columns;
 }
-
 template <class T>
 void MatrixTemplate<T>::copier(const MatrixTemplate &mt) {
     _rows = mt._rows;
@@ -318,37 +290,30 @@ void MatrixTemplate<T>::copier(const MatrixTemplate &mt) {
     for(int i = 0; i <_rows*_columns; i++)
         _buffer[i] = mt._buffer[i];
 }
-
 template<class T>
 const std::string &MatrixTemplate<T>::getMatrixName() const {
     return _matrixName;
 }
-
 template<class T>
 void MatrixTemplate<T>::setMatrixName(const std::string &_matrixName) {
     this->_matrixName = _matrixName;
 }
-
 template<class T>
 void MatrixTemplate<T>::setRows(int _rows) {
     this->_rows = _rows;
 }
-
 template<class T>
 void MatrixTemplate<T>::setColumns(int _columns) {
     this->_columns = _columns;
 }
-
 template <class T>
 void MatrixTemplate<T>::setMatrixId(int matrixId) {
     this->matrixId = matrixId;
 }
-
 template <class T>
 int MatrixTemplate<T>::getMatrixId() {
     return matrixId;
 }
-
 template<class T>
 T *MatrixTemplate<T>::get_buffer() const {
     return _buffer;

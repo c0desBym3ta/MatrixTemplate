@@ -28,7 +28,6 @@ template <class T>
 MatrixFactory<T>::~MatrixFactory() {
 
 }
-
 template <class T>
 MatrixTemplate<T>* MatrixFactory<T>::selectMatrixType(int r, int c) {
     MatrixTemplate<T>* matrix;
