@@ -28,6 +28,14 @@ TEST(MatrixTemplate, testRecMatrix){
         anwser = true;
     ASSERT_EQ(anwser, true);
 }
+TEST(MatrixTemplate, testSquareMatrix){
+    MatrixFactory<int>* matrixFactory = new MatrixFactoryType<int>;
+    MatrixTemplate<int>* squareMatrix = matrixFactory->selectMatrixType(2,2);
+    bool anwser = false;
+    if(squareMatrix->getColumns() == squareMatrix->getRows() && squareMatrix->getRows() > 1 && squareMatrix->getColumns() > 1)
+        anwser = true;
+    ASSERT_EQ(anwser, true);
+}
 TEST(MatrixTemplate, testSelectRow){
     MatrixTemplate<int> testMatrix(2,2);
     ASSERT_THROW(testMatrix.selectRow(3), std::out_of_range);
