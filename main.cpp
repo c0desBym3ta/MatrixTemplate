@@ -9,13 +9,13 @@ int intMatrix();
 void floatMatrix();
 
 int main(int argc, char **argv){
-   // std::string mType;
-    //std::cout << "Enter matrix type (int, float, double): "; std::cin >> mType;
+    std::string mType;
+    std::cout << "Enter matrix type (int, float, double): "; std::cin >> mType;
 
-    //if(mType.compare("int") == 0)
+    if(mType.compare("int") == 0)
         intMatrix();
-    //else if(mType.compare("float") == 0)
-      //  floatMatrix();
+    else if(mType.compare("float") == 0)
+        floatMatrix();
 
     return 0;
 
