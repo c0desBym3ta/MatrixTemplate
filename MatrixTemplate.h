@@ -20,6 +20,7 @@ public:
     virtual MatrixTemplate<T> selectRow(int rowNum) const throw(std::out_of_range);/*tested OK THROW TEST*/
     virtual MatrixTemplate<T> selectColumn(int colNum) const throw(std::out_of_range);/*tested OK THROW TEST*/
     virtual T elementPosition(int rowPos, int colPos) const throw(std::out_of_range); /*tested OK THROW TEST*/
+    virtual MatrixTemplate reduceMatrix() const;
     virtual void modifyElement(int rowNum, int colNum, const T& newValue) throw(std::out_of_range); /*tested OK THROW TEST*/
     virtual void manualInsertValues(MatrixTemplate& newMatrixTemplate); /*tested*/
     virtual void matrixOfZeros(); /*tested*/
@@ -61,6 +62,9 @@ protected:
 
 };
 
+
+
+
 /*=================================IMPLEMENTATION/*=================================*/
 
 /*Constructors and Destructors.*/
@@ -85,6 +89,31 @@ MatrixTemplate<T>::~MatrixTemplate() {
 }
 
 /*Matrix operations.*/
+
+template <class T>
+MatrixTemplate<T> MatrixTemplate<T>::reduceMatrix() const {
+    MatrixTemplate<T> reducedMatrix(*this);
+    int n = _rows;
+    int m = 0;
+
+    for (int k = 0; k < n-1; k++) {
+        if (reducedMatrix._buffer[k * _columns + k] == 0)
+            std::cerr << "Singular matrix" << std::endl;
+
+        for (int i = k+1; i < n; i++) {
+            m = reducedMatrix._buffer[i * _columns + k] / reducedMatrix._buffer[k * _columns + k];
+
+            for (int j = k+1; j < n; j++)
+                reducedMatrix._buffer[i * _columns + j] = reducedMatrix._buffer[i * _columns + j] - m * reducedMatrix._buffer[k * _columns + j];
+
+            reducedMatrix._buffer[i * _columns + k] = 0;
+        }
+    }
+
+    return reducedMatrix;
+
+}
+
 template <class T>
 MatrixTemplate<T> MatrixTemplate<T>::getTranspose() const{
     MatrixTemplate<T> tmp(_columns, _rows);

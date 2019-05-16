@@ -344,7 +344,14 @@ int main(int argc, char **argv){
         }
     }else if(opt == 10){
         utils.clearScreen();
-        std::cout << "\nUnder construction." << std::endl;
+        std::cout << "Enter number of rows: "; std::cin >> rows;
+        std::cout << "Enter number of columns: "; std::cin >> columns;
+        MatrixTemplate<int>* reducedMatrix = matrixFactory->selectMatrixType(rows, columns);
+        reducedMatrix->randomMatrix();
+        reducedMatrix->printMatrix();
+        std::cout << "\nProcessing the request..." << std::endl;
+        *reducedMatrix = reducedMatrix->reduceMatrix();
+        reducedMatrix->printMatrix();
         utils.clearScreen();
         goto optionsScreen;
     }else if(opt == 99){
